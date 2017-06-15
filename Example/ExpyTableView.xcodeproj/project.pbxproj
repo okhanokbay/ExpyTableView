@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		831A72D41EF32BF800D7F300 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831A72D31EF32BF800D7F300 /* Main.storyboard */; };
+		831A72DA1EF3349E00D7F300 /* sample_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 831A72D91EF3349E00D7F300 /* sample_screen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		68F8B9B88F4EBDBC25AA8F6E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		77C191AA6DA7E3B2116859FB /* Pods-ExpyTableView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView_Tests/Pods-ExpyTableView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		831A72D31EF32BF800D7F300 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		831A72D91EF3349E00D7F300 /* sample_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_screen.png; sourceTree = "<group>"; };
 		945C290E0EC12747D76BEB91 /* Pods-ExpyTableView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView_Example/Pods-ExpyTableView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D261D3B498DA7C1BEB9E2584 /* Pods_ExpyTableView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8750589E0D0D720E6AEB /* Pods-ExpyTableView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView_Tests/Pods-ExpyTableView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				831A72D81EF3348000D7F300 /* Screenshots */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for ExpyTableView */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -146,6 +149,14 @@
 				D261D3B498DA7C1BEB9E2584 /* Pods_ExpyTableView_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		831A72D81EF3348000D7F300 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				831A72D91EF3349E00D7F300 /* sample_screen.png */,
+			);
+			name = Screenshots;
 			sourceTree = "<group>";
 		};
 		A09294AA05F7218FF6F7BF88 /* Pods */ = {
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				831A72D41EF32BF800D7F300 /* Main.storyboard in Resources */,
+				831A72DA1EF3349E00D7F300 /* sample_screen.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
