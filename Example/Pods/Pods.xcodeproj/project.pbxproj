@@ -10,7 +10,7 @@
 		147B3F262C0DC00302A86ABF1C1906EA /* Pods-ExpyTableView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E3489D14D81FF53D65A7A1B4148AEAF1 /* Pods-ExpyTableView_Tests-dummy.m */; };
 		1A06D84084B0C44865900CCB8A5A1534 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		1A44AD33C38CD4F50B59A96FCA97B8BF /* ExpyTableView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A39B7FBF66181DADBB05FD478264F1D /* ExpyTableView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E3364B8C4AC8B65CCAB99F8507C855C /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB7E65E8A6E34349FCE465AFB9D54E /* ReplaceMe.swift */; };
+		831A72D21EF31BF800D7F300 /* ExpyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A72D11EF31BF800D7F300 /* ExpyTableView.swift */; };
 		8A89E7FDBB26B7ECBD190A01732BDC4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		901919802B686B193BEAE7DE411092D7 /* Pods-ExpyTableView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE746ACF9291082285D96F0A8C0616E /* Pods-ExpyTableView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBDC314FEF990A53D166D1AD9A4C7B73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -30,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04EB7E65E8A6E34349FCE465AFB9D54E /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		0AE8F3426B25754190337733EBEE0CC3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CF6F17E7688ECA004D89EF610FC51D9 /* Pods-ExpyTableView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ExpyTableView_Example-resources.sh"; sourceTree = "<group>"; };
 		0EC3A7FC3BB6B4AFD4F4287E42725F5F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,19 +38,20 @@
 		1BE746ACF9291082285D96F0A8C0616E /* Pods-ExpyTableView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExpyTableView_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1E7B45B8BFAB1D35A73523F227B12B58 /* Pods-ExpyTableView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ExpyTableView_Example-umbrella.h"; sourceTree = "<group>"; };
 		24E9FC303F530141FF26A7B70D65CA51 /* Pods-ExpyTableView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExpyTableView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		2BF2FC0FFEC4D6B86B813731E68E9577 /* Pods_ExpyTableView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ExpyTableView_Tests.framework; path = "Pods-ExpyTableView_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BF2FC0FFEC4D6B86B813731E68E9577 /* Pods_ExpyTableView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A39B7FBF66181DADBB05FD478264F1D /* ExpyTableView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExpyTableView-umbrella.h"; sourceTree = "<group>"; };
 		3D7EAD3C0BB0733C4DEE6FE89007DB2D /* Pods-ExpyTableView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ExpyTableView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		3FE1DA4C16B1B94863285D456D2266A4 /* Pods-ExpyTableView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ExpyTableView_Tests-resources.sh"; sourceTree = "<group>"; };
-		4C276336358EF764AD09A22CACE34C9B /* ExpyTableView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ExpyTableView.modulemap; sourceTree = "<group>"; };
-		4F25E0658D13BC3ADE7F1551F3057CB6 /* Pods-ExpyTableView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ExpyTableView_Example.modulemap"; sourceTree = "<group>"; };
+		4C276336358EF764AD09A22CACE34C9B /* ExpyTableView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ExpyTableView.modulemap; sourceTree = "<group>"; };
+		4F25E0658D13BC3ADE7F1551F3057CB6 /* Pods-ExpyTableView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ExpyTableView_Example.modulemap"; sourceTree = "<group>"; };
 		5D45F4665AEB2463C21312C740CBA0D0 /* Pods-ExpyTableView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExpyTableView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		64E5EFE308549CF0EBD0208FE1C03206 /* ExpyTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ExpyTableView.framework; path = ExpyTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64E5EFE308549CF0EBD0208FE1C03206 /* ExpyTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExpyTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7A0D10F121F9F8066A72D0F47FCD3660 /* Pods_ExpyTableView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ExpyTableView_Example.framework; path = "Pods-ExpyTableView_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0D10F121F9F8066A72D0F47FCD3660 /* Pods_ExpyTableView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		831A72D11EF31BF800D7F300 /* ExpyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyTableView.swift; sourceTree = "<group>"; };
 		875E6EC06B446971AB8556A1E2CA0A18 /* Pods-ExpyTableView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExpyTableView_Example.release.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A1C5A27222EAA3E9F72A3644F3111988 /* Pods-ExpyTableView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ExpyTableView_Tests.modulemap"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A1C5A27222EAA3E9F72A3644F3111988 /* Pods-ExpyTableView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ExpyTableView_Tests.modulemap"; sourceTree = "<group>"; };
 		C9B87E2EF8DCD8F3E727F90134546E62 /* ExpyTableView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExpyTableView-prefix.pch"; sourceTree = "<group>"; };
 		C9E024B90CF272102961744C6AD190E4 /* Pods-ExpyTableView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ExpyTableView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D72AD86ABB5DE2359BABBFE5571E74A4 /* ExpyTableView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ExpyTableView-dummy.m"; sourceTree = "<group>"; };
@@ -97,7 +97,6 @@
 			children = (
 				67AE0AE4ABFBF5818CA351BEC57B961C /* Classes */,
 			);
-			name = ExpyTableView;
 			path = ExpyTableView;
 			sourceTree = "<group>";
 		};
@@ -128,9 +127,8 @@
 		67AE0AE4ABFBF5818CA351BEC57B961C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				04EB7E65E8A6E34349FCE465AFB9D54E /* ReplaceMe.swift */,
+				831A72D11EF31BF800D7F300 /* ExpyTableView.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -314,6 +312,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					A12191B7D5A7D3B311B38BDA601225DD = {
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -340,7 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E101B06D6CA261C7F2E7D6B60F1AC1B8 /* ExpyTableView-dummy.m in Sources */,
-				4E3364B8C4AC8B65CCAB99F8507C855C /* ReplaceMe.swift in Sources */,
+				831A72D21EF31BF800D7F300 /* ExpyTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE22A059B6F02E6EB5B51C7F37A8EA4C /* ExpyTableView.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -536,6 +540,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DE22A059B6F02E6EB5B51C7F37A8EA4C /* ExpyTableView.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
