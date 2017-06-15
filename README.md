@@ -17,9 +17,9 @@ func expandingCell(forSection section: Int, inTableView tableView: ExpyTableView
 }
 ```
 
-## Result 
+## Result
 
-<img src="https://github.com/okhanokbay/ExpyTableView/Screenshots/sample_screen.png">
+<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen.png">
 
 ## Example
 
