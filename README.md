@@ -17,10 +17,6 @@ func expandingCell(forSection section: Int, inTableView tableView: ExpyTableView
 }
 ```
 
-## Result 
-
-<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen.png">
-
 ## Example
 
 To run the example project, just download the project and open the xcworkspace file in Example folder.
@@ -34,6 +30,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ExpyTableView', '~> 0.1.0'
 ```
+
+## Result 
+
+<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen.png">
 
 ## License
 
