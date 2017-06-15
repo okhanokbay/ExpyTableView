@@ -1,0 +1,16 @@
+PODS:
+  - ExpyTableView (0.1.0)
+
+DEPENDENCIES:
+  - ExpyTableView (from `../`)
+
+EXTERNAL SOURCES:
+  ExpyTableView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  ExpyTableView: 7486bafa8455a07a82399ec66c937e47f90e30cb
+
+PODFILE CHECKSUM: 774099ef2e33701a8f900d448ba79a9a17aba190
+
+COCOAPODS: 1.2.1

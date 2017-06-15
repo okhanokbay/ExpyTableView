@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ExpyTableView_Example' do
+  pod 'ExpyTableView', :path => '../'
+
+  target 'ExpyTableView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
