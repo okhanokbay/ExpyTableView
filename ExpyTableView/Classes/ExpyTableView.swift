@@ -12,7 +12,7 @@ import UIKit
 
 @objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
 	@objc optional func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool //default is true, which means all header cells are expandable
-	func expandingCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
+	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
 }
 
 @objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
@@ -20,16 +20,16 @@ import UIKit
 	@objc optional func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool)
 }
 
-public class ExpyTableView: UITableView {
+open class ExpyTableView: UITableView {
 	
-	public weak var expyDataSource: ExpyTableViewDataSource?
-	public weak var expyDelegate: ExpyTableViewDelegate?
+	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
+	fileprivate weak var expyDelegate: ExpyTableViewDelegate?
 	
-	public fileprivate(set) var expandableSections: [Int: Bool] = [:]
-	public fileprivate(set) var visibleSections: [Int: Bool] = [:]
+	open fileprivate(set) var expandableSections: [Int: Bool] = [:]
+	open fileprivate(set) var visibleSections: [Int: Bool] = [:]
 	
-	public var expandingAnimation: UITableViewRowAnimation = .fade
-	public var collapsingAnimation: UITableViewRowAnimation = .fade
+	open var expandingAnimation: UITableViewRowAnimation = .fade
+	open var collapsingAnimation: UITableViewRowAnimation = .fade
 	
 	override public init(frame: CGRect, style: UITableViewStyle) {
 		super.init(frame: frame, style: style)
@@ -39,24 +39,31 @@ public class ExpyTableView: UITableView {
 		super.init(coder: aDecoder)
 	}
 	
-	override public var dataSource: UITableViewDataSource? {
+	override open var dataSource: UITableViewDataSource? {
 		get {
 			return super.dataSource
 		}
 		set(dataSource) {
+			guard let dataSource = dataSource else { return }
 			expyDataSource = dataSource as? ExpyTableViewDataSource
 			super.dataSource = self
 		}
 	}
 	
-	override public var delegate: UITableViewDelegate? {
+	override open var delegate: UITableViewDelegate? {
 		get {
 			return super.delegate
 		}
 		set(delegate) {
+			guard let delegate = delegate else { return }
 			expyDelegate = delegate as? ExpyTableViewDelegate
 			super.delegate = self
 		}
+	}
+	
+	open func getActionType(forSection section: Int) -> ExpyActionType {
+		let sectionIsVisible = visibleSections[section] ?? false
+		return sectionIsVisible ? .expand : .collapse
 	}
 }
 
@@ -66,7 +73,7 @@ extension ExpyTableView {
 		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
 	}
 	
-	override public func responds(to aSelector: Selector!) -> Bool {
+	override open func responds(to aSelector: Selector!) -> Bool {
 		if verifyProtocolContainsSelector(UITableViewDataSource.self, contains: aSelector) {
 			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
 			
@@ -76,7 +83,7 @@ extension ExpyTableView {
 		return super.responds(to: aSelector)
 	}
 	
-	override public func forwardingTarget(for aSelector: Selector!) -> Any? {
+	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
 		if verifyProtocolContainsSelector(UITableViewDataSource.self, contains: aSelector) {
 			return expyDataSource
 		}else if verifyProtocolContainsSelector(UITableViewDelegate.self, contains: aSelector) {
@@ -147,7 +154,7 @@ extension ExpyTableView {
 }
 
 extension ExpyTableView: UITableViewDataSource {
-	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		//If canExpandSections delegate method is not implemented, it defaults to true.
 		let sectionIsExpandable = expyDataSource?.canExpand?(section: section, inTableView: self) ?? true
 		let sectionIsVisible = visibleSections[section] ?? false
@@ -166,20 +173,20 @@ extension ExpyTableView: UITableViewDataSource {
 		return sectionIsVisible ? numberOfRows : 1
 	}
 	
-	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
 		
 		guard sectionIsExpandable, indexPath.row == 0 else {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
-		
-		return expyDataSource!.expandingCell(forSection: indexPath.section, inTableView: self)
+
+		return expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
 	}
 }
 
 extension ExpyTableView: UITableViewDelegate {
 	
-	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let sectionExistsInExpandableSections = expandableSections[indexPath.section] ?? false
 		let sectionExistsInVisibleSections = visibleSections[indexPath.section] ?? false
 		
