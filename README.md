@@ -45,7 +45,7 @@ class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
   }
   
   // Then return your expandable cell instance from expandingCell data source method.
-  func expandingCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+  func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
     // this cell will be displayed at IndexPath with section: section and row 0
   }
 } 
