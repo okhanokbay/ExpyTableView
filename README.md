@@ -7,6 +7,10 @@
 ## About
 ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/OliverLetterer/SLExpandableTableView). Takes some ideas, concepts and codes and regenerates them in Swift. Lets you create expandable table views as easily as its descendant. 
 
+- **Other solutions:** You manipulate the height to expand a cell, when an update is needed in design of the cell, you have to re-construct all the auto-layout constraints or logic in code.
+
+- **ExpyTableView:** You make an expandable table view by using multiple cells and inserting and deleting them(which can mean expanding and collapsing), you will have a great chance in future design requests. All you will have to do is adding a new UITableViewCell and writing the code for it. You will easily have the new design.
+
 ## Requirements
 - iOS 8.0+
 - Swift 3.0+
