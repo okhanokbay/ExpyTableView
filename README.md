@@ -89,7 +89,7 @@ extension ViewController{
 } 
 ```
 
-If a data source or delegate method is not being implemented by ExpyTableView, then it forwards them to its subclass. Thus, you will get callback for any other table view data source or delegate methods. You don't have to conform UITableViewDataSource or UITableViewDelegate, just conform to ExpyTableViewDataSource and ExpyTableViewDelegate and they will  forward you any unhandled methods.
+You will get callback for all of the UITableViewDataSource or UITableViewDelegate methods. Just conform to ExpyTableViewDataSource and ExpyTableViewDelegate and they will  forward you all methods, right after they are done with own implementations.
 
 ```swift
 extension ViewController{
