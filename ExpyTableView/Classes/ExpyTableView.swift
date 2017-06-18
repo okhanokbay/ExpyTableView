@@ -109,15 +109,15 @@ extension ExpyTableView {
 		if (type == .expand) && (visibleSections[section] == true) { return} //If section is visible and action type is expand, return.
 		else if (type == .collapse) && (visibleSections[section] == false) { return } //If section is not visible and action type is collapse, return.
 		
-		//Inform the delegate here.
-		expyDelegate?.expyTableViewWillChangeState?(withType: type, forSection: section, inTableView: tableView, animated: animated)
-		
 		visibleSections[section] = (type == .expand)
 		
 		if !animated {
 			reloadDataAndResetExpansionStates(reset: false)
 		}else {
 			self.beginUpdates()
+			
+			//Inform the delegate here.
+			expyDelegate?.expyTableViewWillChangeState?(withType: type, forSection: section, inTableView: tableView, animated: animated)
 			
 			//Don't insert or delete anything if section has only 1 cell.
 			if let sectionRowCount = expyDataSource?.tableView(tableView, numberOfRowsInSection: section), sectionRowCount > 1 {
@@ -137,6 +137,7 @@ extension ExpyTableView {
 				}
 			}
 			
+			self.reloadRows(at: [IndexPath(row: 0, section: section)], with: .none)
 			self.endUpdates()
 		}
 		
