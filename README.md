@@ -7,6 +7,10 @@
 ## About
 ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/OliverLetterer/SLExpandableTableView). Takes some ideas, concepts and codes and regenerates them in Swift. Lets you create expandable table views as easily as its descendant. 
 
+## Requirements
+- iOS 8.0+
+- Swift 3.0+
+
 ## Installation
 
 ExpyTableView is available through [CocoaPods](http://cocoapods.org). To install
