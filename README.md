@@ -89,7 +89,7 @@ extension ViewController{
 } 
 ```
 
-You will get callback for all of the UITableViewDataSource or UITableViewDelegate methods. Just conform to ExpyTableViewDataSource and ExpyTableViewDelegate and they will  forward you all methods, right after they are done with own implementations.
+You will get callback for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods, right after they are done with own implementations.
 
 ```swift
 extension ViewController{
