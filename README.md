@@ -7,6 +7,15 @@
 ## About
 ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/OliverLetterer/SLExpandableTableView). Takes some ideas, concepts and codes and regenerates them in Swift. Lets you create expandable table views as easily as its descendant. 
 
+## Installation
+
+ExpyTableView is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'ExpyTableView'
+```
+
 ## How to use
 
 First of all, if you are using Interface Builder, set your table view's class and module as ExpyTableView.'
@@ -87,16 +96,6 @@ See example code for more details and implementation examples.
 ## Example
 
 To run the example project, just download the project and open the xcworkspace file in Example folder.
-
-
-## Installation
-
-ExpyTableView is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'ExpyTableView'
-```
 
 ## Result 
 
