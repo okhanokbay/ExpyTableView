@@ -105,7 +105,7 @@ To run the example project, just download the project and open the xcworkspace f
 
 ## Result 
 
-<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/customization_example.png" width=350> <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen.png" width=350>
+<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/customization_example.png" width=300> <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen.png" width=300>
 
 ## License
 
