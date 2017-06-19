@@ -170,6 +170,6 @@ extension UITableViewCell {
 	}
 	
 	func hideSeparator() {
-		self.separatorInset = UIEdgeInsets(top: 0, left: self.contentView.bounds.size.width, bottom: 0, right: 0)
+		self.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
 	}
 }
