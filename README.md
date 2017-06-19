@@ -49,17 +49,19 @@ class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
 } 
 ```
 
-You are ready to go with the setup above. But you can improve the implementation: 
+You are ready to go with the setup above. 
+
+If you want, you can improve the implementation: 
 
 ```swift
 extension ViewController{
 
-  //OPTIONAL DATA SOURCE METHOD, Default is true for all sections.
+  //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
   func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
     return true //Return false if you want your section not to be expandable
   }
 
-  //OPTIONAL DELEGATE METHOD, Receive callbacks just before a section will expand or collapse
+  //OPTIONAL DELEGATE METHOD, receives callbacks just before a section will expand or collapse
   func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
 
     switch type {
@@ -72,7 +74,7 @@ extension ViewController{
   }
 }
 
-  //OPTIONAL DELEGATE METHOD, Receive callbacks just after a section did expand or collapse
+  //OPTIONAL DELEGATE METHOD, receives callbacks just after a section did expand or collapse
   func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
 
     switch type {
@@ -87,7 +89,7 @@ extension ViewController{
 } 
 ```
 
-You will get callback for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods, right after they are done with own implementations.
+You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods, right after they are done with own implementations.
 
 ```swift
 extension ViewController{
