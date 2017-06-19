@@ -31,6 +31,9 @@ class CustomizationExampleViewController: UIViewController {
 				expandableTableView.dataSource = self
 				expandableTableView.delegate = self
 			
+				expandableTableView.rowHeight = UITableViewAutomaticDimension
+				expandableTableView.estimatedRowHeight = 44
+			
 				//Alter the animations as you want
 				expandableTableView.expandingAnimation = .fade
 				expandableTableView.collapsingAnimation = .fade
@@ -97,7 +100,12 @@ extension CustomizationExampleViewController {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
 	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
+	}
 }
+
 //MARK: UITableView Data Source Methods 
 extension CustomizationExampleViewController {
 	func numberOfSections(in tableView: UITableView) -> Int {

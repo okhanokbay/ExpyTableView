@@ -13,8 +13,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		830553581EF84FA800C5AABB /* customization_example.png in Resources */ = {isa = PBXBuildFile; fileRef = 830553561EF84FA800C5AABB /* customization_example.png */; };
 		830553591EF84FA800C5AABB /* sample_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 830553571EF84FA800C5AABB /* sample_screen.png */; };
+		8305535B1EF8585F00C5AABB /* customization_example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8305535A1EF8585F00C5AABB /* customization_example.png */; };
 		830899F81EF6B8800061A261 /* setting_class_and_module.png in Resources */ = {isa = PBXBuildFile; fileRef = 830899F71EF6B8800061A261 /* setting_class_and_module.png */; };
 		831A72D41EF32BF800D7F300 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831A72D31EF32BF800D7F300 /* Main.storyboard */; };
 		83E916421EF460F6003D8DFD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E916411EF460F6003D8DFD /* MainViewController.swift */; };
@@ -46,8 +46,8 @@
 		6712C1770A928078546B8764 /* Pods_ExpyTableView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F8B9B88F4EBDBC25AA8F6E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		77C191AA6DA7E3B2116859FB /* Pods-ExpyTableView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView_Tests/Pods-ExpyTableView_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		830553561EF84FA800C5AABB /* customization_example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customization_example.png; sourceTree = "<group>"; };
 		830553571EF84FA800C5AABB /* sample_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_screen.png; sourceTree = "<group>"; };
+		8305535A1EF8585F00C5AABB /* customization_example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customization_example.png; sourceTree = "<group>"; };
 		830899F71EF6B8800061A261 /* setting_class_and_module.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_class_and_module.png; sourceTree = "<group>"; };
 		831A72D31EF32BF800D7F300 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		83E916411EF460F6003D8DFD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		831A72D81EF3348000D7F300 /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				830553561EF84FA800C5AABB /* customization_example.png */,
+				8305535A1EF8585F00C5AABB /* customization_example.png */,
 				830553571EF84FA800C5AABB /* sample_screen.png */,
 				830899F71EF6B8800061A261 /* setting_class_and_module.png */,
 			);
@@ -272,12 +272,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8305535B1EF8585F00C5AABB /* customization_example.png in Resources */,
 				831A72D41EF32BF800D7F300 /* Main.storyboard in Resources */,
 				830899F81EF6B8800061A261 /* setting_class_and_module.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				830553591EF84FA800C5AABB /* sample_screen.png in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				830553581EF84FA800C5AABB /* customization_example.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
