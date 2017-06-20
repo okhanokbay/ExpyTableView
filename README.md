@@ -66,8 +66,6 @@ extension ViewController {
 ```
 
 You can use optional delegate methods:
-**(Don't forget to set delegate for your table view to receive callbacks for any UITableViewDelegate or ExpyTableViewDelegate methods)** 
-//expandableTableView.delegate = self
 
 ```swift
 extension ViewController: ExpyTableViewDelegate {
