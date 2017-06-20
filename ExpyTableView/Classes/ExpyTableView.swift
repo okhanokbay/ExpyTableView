@@ -25,8 +25,8 @@ open class ExpyTableView: UITableView {
 	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
 	fileprivate weak var expyDelegate: ExpyTableViewDelegate?
 	
-	open fileprivate(set) var expandableSections: [Int: Bool] = [:]
-	open fileprivate(set) var visibleSections: [Int: Bool] = [:]
+	public fileprivate(set) var expandableSections: [Int: Bool] = [:]
+	public fileprivate(set) var visibleSections: [Int: Bool] = [:]
 	
 	open var expandingAnimation: UITableViewRowAnimation = .fade
 	open var collapsingAnimation: UITableViewRowAnimation = .fade
@@ -61,18 +61,17 @@ open class ExpyTableView: UITableView {
 		}
 	}
 	
+	override open func awakeFromNib() {
+		super.awakeFromNib()
+		if expyDelegate == nil {
+			//Set UITableViewDelegate even if ExpyTableViewDelegate is nil. Because we are getting callbacks here in didSelectRowAtIndexPath UITableViewDelegate method.
+			super.delegate = self
+		}
+	}
+	
 	open func getActionType(forSection section: Int) -> ExpyActionType {
 		let sectionIsVisible = visibleSections[section] ?? false
 		return sectionIsVisible ? .expand : .collapse
-	}
-	
-	open override func awakeFromNib() {
-		super.awakeFromNib()
-		
-		//Set UITableViewDelegate even if ExpyTableViewDelegate is nil. Because we are getting callbacks here in didSelectRowAtIndexPath UITableViewDelegate method.
-		if expyDelegate == nil {
-			super.delegate = self
-		}
 	}
 }
 
@@ -112,13 +111,12 @@ extension ExpyTableView {
 	}
 	
 	private func animate(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
-		
 		guard let sectionIsExpandable = expandableSections[section], sectionIsExpandable else { return }
 		
-		//If section is visible and action type is expand, OR,
-		//If section is not visible and action type is collapse, return.
-		if ((type == .expand) && (visibleSections[section] == true)) ||
-		((type == .collapse) && (visibleSections[section] == false)) { return }
+		let sectionIsVisible = visibleSections[section] ?? false
+		
+		//If section is visible and action type is expand, OR, If section is not visible and action type is collapse, return.
+		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
 		
 		visibleSections[section] = (type == .expand)
 		
@@ -191,17 +189,12 @@ extension ExpyTableView: UITableViewDataSource {
 extension ExpyTableView: UITableViewDelegate {
 	
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let sectionExistsInExpandableSections = expandableSections[indexPath.section] ?? false
-		let sectionExistsInVisibleSections = visibleSections[indexPath.section] ?? false
+		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
+		let sectionIsVisible = visibleSections[indexPath.section] ?? false
 		
 		expyDelegate?.tableView?(tableView, didSelectRowAt: indexPath)
 		
-		guard sectionExistsInExpandableSections && (indexPath.row == 0) else { return }
-		
-		if sectionExistsInVisibleSections {
-			collapse(indexPath.section, inTableView: self)
-		}else {
-			expand(indexPath.section, inTableView: self)
-		}
+		guard sectionIsExpandable, indexPath.row == 0 else { return }
+		sectionIsVisible ? collapse(indexPath.section, inTableView: self) : expand(indexPath.section, inTableView: self)
 	}
 }
