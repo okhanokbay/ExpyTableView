@@ -103,11 +103,11 @@ extension ViewController{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
   }
-}
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
   }
+}
 
 //All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you.
 ```
