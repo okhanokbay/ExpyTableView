@@ -16,7 +16,6 @@ class BasicExampleViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		expandableTableView.dataSource = self
-		expandableTableView.delegate = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -27,7 +26,7 @@ class BasicExampleViewController: UIViewController {
 
 //All you have to do is to implement this method. If you have a current table view which is not expandable, you can turn it into an expandable table view just by copying and pasting the code for first cell from cellForRowAtIndexPath method.
 
-extension BasicExampleViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
+extension BasicExampleViewController: ExpyTableViewDataSource {
 	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
 		return tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
 	}
