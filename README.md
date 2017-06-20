@@ -94,7 +94,7 @@ extension ViewController: ExpyTableViewDelegate {
 } 
 ```
 
-You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods you need.
+You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
 
 ```swift
 extension ViewController{
