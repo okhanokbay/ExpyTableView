@@ -37,10 +37,12 @@ class ViewController: ExpyTableViewDataSource {
 
   @IBOutlet weak var expandableTableView: ExpyTableView!
 
-  // First, set data source and delegate for your table view.
+  // First, set data source for your table view.
   override func viewDidLoad() {
     super.viewDidLoad() 
     expandableTableView.dataSource = self
+    //Set delegate if you will implement any UITableViewDelegate or ExpyTableViewDelegate methods.
+    //expandableTableView.delegate = self 
   }
   
   // Then return your expandable cell instance from expandingCell data source method.
@@ -64,6 +66,8 @@ extension ViewController {
 ```
 
 You can use optional delegate methods:
+**(Don't forget to set delegate for your table view to receive callbacks for any UITableViewDelegate or ExpyTableViewDelegate methods)** 
+//expandableTableView.delegate = self
 
 ```swift
 extension ViewController: ExpyTableViewDelegate {
