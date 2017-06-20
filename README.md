@@ -31,7 +31,7 @@ First of all, if you are using Interface Builder, set your table view's class an
 Then start implementing required methods:
 
 ```swift
-class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
+class ViewController: ExpyTableViewDataSource {
 
   @IBOutlet weak var expandableTableView: ExpyTableView!
 
@@ -39,7 +39,6 @@ class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad() 
     expandableTableView.dataSource = self
-    expandableTableView.delegate = self
   }
   
   // Then return your expandable cell instance from expandingCell data source method.
@@ -62,7 +61,7 @@ extension ViewController{
   }
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just before a section will expand or collapse
-  func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+  func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 
     switch type {
     case .expand:
@@ -75,7 +74,7 @@ extension ViewController{
 }
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just after a section did expand or collapse
-  func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+  func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 
     switch type {
     case .expand:
@@ -89,7 +88,7 @@ extension ViewController{
 } 
 ```
 
-You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods, right after they are done with own implementations.
+You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods you need.
 
 ```swift
 extension ViewController{
@@ -97,6 +96,12 @@ extension ViewController{
     print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
   }
 }
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
+	}
+
+//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you.
 ```
 
 See example code for more details and implementation examples.
