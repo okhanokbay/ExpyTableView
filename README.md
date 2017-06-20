@@ -79,7 +79,6 @@ extension ViewController: ExpyTableViewDelegate {
       print("WILL COLLAPSE")
     }
   }
-}
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just after a section did expand or collapse
   func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
@@ -109,7 +108,7 @@ extension ViewController{
   }
 }
 
-//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you.
+//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
 ```
 
 See example code for more details and implementation examples.
