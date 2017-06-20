@@ -53,12 +53,14 @@ You are ready to go with the setup above.
 If you want, you can improve the implementation: 
 
 ```swift
-extension ViewController{
+extension ViewController {
+	//OPTIONAL DATA SOURCE METHOD, default is true for all sections.
+	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+		return true //Return false if you want your section not to be expandable
+	}
+}
 
-  //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
-  func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
-    return true //Return false if you want your section not to be expandable
-  }
+extension ViewController: ExpyTableViewDelegate {
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just before a section will expand or collapse
   func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {

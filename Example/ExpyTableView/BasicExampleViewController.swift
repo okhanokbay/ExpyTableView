@@ -28,7 +28,9 @@ class BasicExampleViewController: UIViewController {
 
 extension BasicExampleViewController: ExpyTableViewDataSource {
 	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
-		return tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
+		//Make your customizations here.
+		return cell
 	}
 }
 
