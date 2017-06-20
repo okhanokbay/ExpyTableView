@@ -56,10 +56,10 @@ If you want, you can improve the implementation:
 
 ```swift
 extension ViewController {
-	//OPTIONAL DATA SOURCE METHOD, default is true for all sections.
-	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
-		return true //Return false if you want your section not to be expandable
-	}
+  //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
+  func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+    return true //Return false if you want your section not to be expandable
+  }
 }
 ```
 
@@ -72,12 +72,12 @@ extension ViewController: ExpyTableViewDelegate {
   func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 
     switch type {
-    case .expand:
-    print("WILL EXPAND")
+      case .expand:
+      print("WILL EXPAND")
 
-    case .collapse:
-    print("WILL COLLAPSE")
-    
+      case .collapse:
+      print("WILL COLLAPSE")
+    }
   }
 }
 
@@ -105,9 +105,9 @@ extension ViewController{
   }
 }
 
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
-	}
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
 
 //All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you.
 ```
