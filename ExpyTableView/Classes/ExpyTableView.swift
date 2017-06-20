@@ -16,8 +16,8 @@ import UIKit
 }
 
 @objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
-	@objc optional func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool)
-	@objc optional func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool)
+	@objc optional func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView)
+	@objc optional func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView)
 }
 
 open class ExpyTableView: UITableView {
@@ -65,6 +65,15 @@ open class ExpyTableView: UITableView {
 		let sectionIsVisible = visibleSections[section] ?? false
 		return sectionIsVisible ? .expand : .collapse
 	}
+	
+	open override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		//Set UITableViewDelegate even if ExpyTableViewDelegate is nil. Because we are getting callbacks here in didSelectRowAtIndexPath UITableViewDelegate method.
+		if expyDelegate == nil {
+			super.delegate = self
+		}
+	}
 }
 
 //MARK: Protocol Helper
@@ -94,63 +103,57 @@ extension ExpyTableView {
 }
 
 extension ExpyTableView {
-	fileprivate func expand(_ section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
-		animateTableView(withType: .expand, forSection: section, inTableView: tableView, animated: animated)
+	fileprivate func expand(_ section: Int, inTableView tableView: ExpyTableView) {
+		animate(tableView, with: .expand, forSection: section)
 	}
 	
-	fileprivate func collapse(_ section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
-		animateTableView(withType: .collapse, forSection: section, inTableView: tableView, animated: animated)
+	fileprivate func collapse(_ section: Int, inTableView tableView: ExpyTableView) {
+		animate(tableView, with: .collapse, forSection: section)
 	}
 	
-	private func animateTableView(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+	private func animate(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
 		
 		guard let sectionIsExpandable = expandableSections[section], sectionIsExpandable else { return }
 		
-		if (type == .expand) && (visibleSections[section] == true) { return} //If section is visible and action type is expand, return.
-		else if (type == .collapse) && (visibleSections[section] == false) { return } //If section is not visible and action type is collapse, return.
+		//If section is visible and action type is expand, OR,
+		//If section is not visible and action type is collapse, return.
+		if ((type == .expand) && (visibleSections[section] == true)) ||
+		((type == .collapse) && (visibleSections[section] == false)) { return }
 		
 		visibleSections[section] = (type == .expand)
 		
-		if !animated {
-			reloadDataAndResetExpansionStates(reset: false)
-		}else {
-			self.beginUpdates()
-			
-			//Inform the delegate here.
-			expyDelegate?.expyTableViewWillChangeState?(withType: type, forSection: section, inTableView: tableView, animated: animated)
-			
-			//Don't insert or delete anything if section has only 1 cell.
-			if let sectionRowCount = expyDataSource?.tableView(tableView, numberOfRowsInSection: section), sectionRowCount > 1 {
-				
-				var indexesToProcess: [IndexPath] = []
-				
-				//Start from 1, because 0 is the header cell.
-				for row in 1..<sectionRowCount {
-					indexesToProcess.append(IndexPath(row: row, section: section))
-				}
-				
-				//Expand means inserting rows, collapse means deleting rows.
-				if type == .expand {
-					self.insertRows(at: indexesToProcess, with: expandingAnimation)
-				}else if type == .collapse {
-					self.deleteRows(at: indexesToProcess, with: collapsingAnimation)
-				}
-			}
-			
-			self.reloadRows(at: [IndexPath(row: 0, section: section)], with: .none)
-			self.endUpdates()
-		}
-		
 		let completionBlock = { [weak self] () -> (Void) in
 			//Inform the delegate here.
-			self?.expyDelegate?.expyTableViewDidChangeState?(withType: type, forSection: section, inTableView: tableView, animated: animated)
+			self?.expyDelegate?.expyTableViewDidChangeState?(withType: type, forSection: section, inTableView: tableView)
 		}
 		
-		if animated{
-			CATransaction.setCompletionBlock(completionBlock)
-		}else {
-			completionBlock()
+		self.beginUpdates()
+		
+		//Inform the delegate here.
+		expyDelegate?.expyTableViewWillChangeState?(withType: type, forSection: section, inTableView: tableView)
+		
+		//Don't insert or delete anything if section has only 1 cell.
+		if let sectionRowCount = expyDataSource?.tableView(tableView, numberOfRowsInSection: section), sectionRowCount > 1 {
+			
+			var indexesToProcess: [IndexPath] = []
+			
+			//Start from 1, because 0 is the header cell.
+			for row in 1..<sectionRowCount {
+				indexesToProcess.append(IndexPath(row: row, section: section))
+			}
+			
+			//Expand means inserting rows, collapse means deleting rows.
+			if type == .expand {
+				self.insertRows(at: indexesToProcess, with: expandingAnimation)
+			}else if type == .collapse {
+				self.deleteRows(at: indexesToProcess, with: collapsingAnimation)
+			}
 		}
+		
+		self.reloadRows(at: [IndexPath(row: 0, section: section)], with: .none)
+		self.endUpdates()
+		
+		CATransaction.setCompletionBlock(completionBlock)
 	}
 }
 
@@ -196,21 +199,9 @@ extension ExpyTableView: UITableViewDelegate {
 		guard sectionExistsInExpandableSections && (indexPath.row == 0) else { return }
 		
 		if sectionExistsInVisibleSections {
-			collapse(indexPath.section, inTableView: self, animated: true)
+			collapse(indexPath.section, inTableView: self)
 		}else {
-			expand(indexPath.section, inTableView: self, animated: true)
+			expand(indexPath.section, inTableView: self)
 		}
-	}
-}
-
-extension ExpyTableView {
-	fileprivate func reloadDataAndResetExpansionStates(reset: Bool) {
-		if reset { resetExpansionStates() }
-		super.reloadData()
-	}
-	
-	private func resetExpansionStates( ){
-		expandableSections.removeAll()
-		visibleSections.removeAll()
 	}
 }

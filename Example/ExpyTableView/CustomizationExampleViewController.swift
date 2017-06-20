@@ -66,7 +66,7 @@ extension CustomizationExampleViewController: ExpyTableViewDataSource {
 
 //MARK: ExpyTableView delegate methods
 extension CustomizationExampleViewController: ExpyTableViewDelegate {
-	func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+	func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 		
 		switch type {
 		case .expand:
@@ -78,7 +78,7 @@ extension CustomizationExampleViewController: ExpyTableViewDelegate {
 		}
 	}
 	
-	func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+	func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 		
 		switch type {
 		case .expand:

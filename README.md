@@ -5,11 +5,13 @@
 [![Platform](https://img.shields.io/cocoapods/p/ExpyTableView.svg?style=flat)](http://cocoapods.org/pods/ExpyTableView)
 
 ## About
+
 ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/OliverLetterer/SLExpandableTableView). Takes some ideas, concepts and codes and regenerates them in Swift. Lets you create expandable table views as easily as its ancestor. 
 
 With **ExpyTableView**, you make an expandable table view by using multiple cells and inserting/deleting them(which can mean expanding and collapsing). With this approach, you will have a great chance in future design requests. All you will have to do is adding a new UITableViewCell and writing the code for it. You will easily have the new design.
 
 ## Requirements
+
 - iOS 8.0+
 - Swift 3.0+
 
@@ -31,7 +33,7 @@ First of all, if you are using Interface Builder, set your table view's class an
 Then start implementing required methods:
 
 ```swift
-class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
+class ViewController: ExpyTableViewDataSource {
 
   @IBOutlet weak var expandableTableView: ExpyTableView!
 
@@ -39,7 +41,6 @@ class ViewController: ExpyTableViewDataSource, ExpyTableViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad() 
     expandableTableView.dataSource = self
-    expandableTableView.delegate = self
   }
   
   // Then return your expandable cell instance from expandingCell data source method.
@@ -54,28 +55,33 @@ You are ready to go with the setup above.
 If you want, you can improve the implementation: 
 
 ```swift
-extension ViewController{
-
+extension ViewController {
   //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
   func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
     return true //Return false if you want your section not to be expandable
   }
+}
+```
+
+You can use optional delegate methods:
+
+```swift
+extension ViewController: ExpyTableViewDelegate {
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just before a section will expand or collapse
-  func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+  func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 
     switch type {
-    case .expand:
-    print("WILL EXPAND")
+      case .expand:
+      print("WILL EXPAND")
 
-    case .collapse:
-    print("WILL COLLAPSE")
-    
+      case .collapse:
+      print("WILL COLLAPSE")
+    }
   }
-}
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just after a section did expand or collapse
-  func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView, animated: Bool) {
+  func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView) {
 
     switch type {
     case .expand:
@@ -89,12 +95,19 @@ extension ViewController{
 } 
 ```
 
-You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will  forward you all methods, right after they are done with own implementations.
+You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
 
 ```swift
 extension ViewController{
+
+//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
+//Here you can see two examples below.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
   }
 }
 ```
