@@ -99,6 +99,9 @@ You will get callbacks for all of the **UITableViewDataSource** or **UITableView
 
 ```swift
 extension ViewController{
+
+//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
+//Here you can see two examples below.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
   }
@@ -107,8 +110,6 @@ extension ViewController{
     return UITableViewAutomaticDimension
   }
 }
-
-//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
 ```
 
 See example code for more details and implementation examples.
