@@ -59,7 +59,11 @@ extension ViewController {
 		return true //Return false if you want your section not to be expandable
 	}
 }
+```
 
+You can use optional delegate methods:
+
+```swift
 extension ViewController: ExpyTableViewDelegate {
 
   //OPTIONAL DELEGATE METHOD, receives callbacks just before a section will expand or collapse
