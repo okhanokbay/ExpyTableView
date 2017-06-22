@@ -57,7 +57,7 @@ class ViewController: ExpyTableViewDataSource {
 } 
 ```
 
-You are ready to go with the setup above. 
+**You are ready to go with the setup above. **
 
 If you want, you can improve the implementation: 
 
