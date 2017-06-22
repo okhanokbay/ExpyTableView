@@ -90,7 +90,7 @@ extension ViewController: ExpyTableViewDelegate {
 
     case .didCollapse:
     print("DID COLLAPSE")
-	}
+  }
 } 
 
   //OPTIONAL DELEGATE METHOD, if you conform to this in your header cell (which is section: section and row: 0) you will get state change notifications
@@ -119,8 +119,8 @@ extension ViewController: ExpyTableViewDelegate {
 You can manually expand or collapse any section like below:
 
 ```swift
-  expandableTableView.expand(0)
-  expandableTableView.collapse(0)
+  expandableTableView.expand(0) //Expand first section manually
+  expandableTableView.collapse(0) //Collapse first section manually
 ```
 
 You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
