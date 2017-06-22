@@ -35,7 +35,7 @@ public enum ExpyActionType {
 	case expand, collapse
 }
 
-public protocol ExpyTableViewHeaderCell: class {
+@objc public protocol ExpyTableViewHeaderCell: class {
 	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
 }
 
@@ -59,15 +59,15 @@ open class ExpyTableView: UITableView {
 	open var expandingAnimation: UITableViewRowAnimation = .fade
 	open var collapsingAnimation: UITableViewRowAnimation = .fade
 	
-	override public init(frame: CGRect, style: UITableViewStyle) {
+	public override init(frame: CGRect, style: UITableViewStyle) {
 		super.init(frame: frame, style: style)
 	}
 	
-	required public init?(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
-	override open var dataSource: UITableViewDataSource? {
+	open override var dataSource: UITableViewDataSource? {
 		get {
 			return super.dataSource
 		}
@@ -78,7 +78,7 @@ open class ExpyTableView: UITableView {
 		}
 	}
 	
-	override open var delegate: UITableViewDelegate? {
+	open override var delegate: UITableViewDelegate? {
 		get {
 			return super.delegate
 		}
@@ -89,7 +89,7 @@ open class ExpyTableView: UITableView {
 		}
 	}
 	
-	override open func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		if expyDelegate == nil {
 			//Set UITableViewDelegate even if ExpyTableViewDelegate is nil. Because we are getting callbacks here in didSelectRowAtIndexPath UITableViewDelegate method.

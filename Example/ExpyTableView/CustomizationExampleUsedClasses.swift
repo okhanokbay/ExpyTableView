@@ -57,6 +57,7 @@ class SpecificationTableViewCell: UITableViewCell {
 class BuyTableViewCell: UITableViewCell {}
 
 extension UITableViewCell {
+
 	func showSeparator() {
 		DispatchQueue.main.async { [weak self] _ in
 			self?.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

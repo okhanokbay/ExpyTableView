@@ -44,6 +44,17 @@ class CustomizationExampleViewController: UIViewController {
 				expandableTableView.tableFooterView = UIView()
 			
 				navigationItem.title = "iPhones"
+			
+				//If your app only works in portrait mode, you don't have to add this. https://github.com/okhanokbay/ExpyTableView/issues/3
+				NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+	}
+	
+	@objc private func orientationDidChange() {
+		switch UIDevice.current.orientation {
+		case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
+			expandableTableView.reloadSections(IndexSet(Array(expandableTableView.visibleSections.keys)), with: .none)
+		default:break
+		}
 	}
 }
 
