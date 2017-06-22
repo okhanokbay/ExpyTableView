@@ -218,7 +218,7 @@ extension ExpyTableView: UITableViewDataSource {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
 		
-		var headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
+		let headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
 
 		guard let headerCellConformant = headerCell as? ExpyTableViewHeaderCell else {
 			return headerCell
