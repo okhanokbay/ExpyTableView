@@ -42,18 +42,18 @@ class ViewController: ExpyTableViewDataSource {
 
 @IBOutlet weak var expandableTableView: ExpyTableView!
 
-	// First, set data source for your table view.
-	override func viewDidLoad() {
-		super.viewDidLoad() 
-		expandableTableView.dataSource = self
-		//Set delegate if you will implement any UITableViewDelegate or ExpyTableViewDelegate methods.
-		//expandableTableView.delegate = self 
-	}
+  // First, set data source for your table view.
+  override func viewDidLoad() {
+    super.viewDidLoad() 
+    expandableTableView.dataSource = self
+    //Set delegate if you will implement any UITableViewDelegate or ExpyTableViewDelegate methods.
+    //expandableTableView.delegate = self 
+  }
 
-	// Then return your expandable cell instance from expandingCell data source method.
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
-		// This cell will be displayed at IndexPath with (section: section and row: 0)
-	}
+  // Then return your expandable cell instance from expandingCell data source method.
+  func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+    // This cell will be displayed at IndexPath with (section: section and row: 0)
+  }
 } 
 ```
 
@@ -64,9 +64,9 @@ If you want, you can improve the implementation:
 ```swift
 extension ViewController {
   //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
-	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
-		return true //Return false if you want your section not to be expandable
-	}
+  func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+    return true //Return false if you want your section not to be expandable
+  }
 }
 ```
 
