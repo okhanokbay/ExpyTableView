@@ -36,8 +36,7 @@ public enum ExpyActionType {
 }
 
 public protocol ExpyTableViewHeaderCell: class {
-	var currentState: ExpyActionType? { get set }
-	func change(_ state: ExpyState)
+	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
 }
 
 @objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
@@ -149,18 +148,22 @@ extension ExpyTableView {
 	
 	private func startAnimating(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
 	
-		//Inform the delegates here.
-		((self.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewHeaderCell)?.change(type == .expand ? .willExpand : .willCollapse)
-		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
+		let headerCell = (self.cellForRow(at: IndexPath(row: 0, section: section)))
+		let headerCellConformant = headerCell as? ExpyTableViewHeaderCell
 		
 		CATransaction.begin()
-		self.cellForRow(at: IndexPath(row: 0, section: section))?.isUserInteractionEnabled = false
-			
+		headerCell?.isUserInteractionEnabled = false
+		
+		//Inform the delegates here.
+		headerCellConformant?.changeState((type == .expand ? .willExpand : .willCollapse), cellReuseStatus: false)
+		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
+
 		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
 			//Inform the delegates here.
-			((self?.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewHeaderCell)?.change(type == .expand ? .didExpand : .didCollapse)
+			headerCellConformant?.changeState((type == .expand ? .didExpand : .didCollapse), cellReuseStatus: false)
+			
 			self?.expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
-			self?.cellForRow(at: IndexPath(row: 0, section: section))?.isUserInteractionEnabled = true
+			headerCell?.isUserInteractionEnabled = true
 		}
 		
 		self.beginUpdates()
@@ -215,15 +218,20 @@ extension ExpyTableView: UITableViewDataSource {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
 		
-		var expandableCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
-		
-		if visibleSections[indexPath.section] == true {
-			(expandableCell as? ExpyTableViewHeaderCell)?.currentState = .expand
-		}else {
-			(expandableCell as? ExpyTableViewHeaderCell)?.currentState = .collapse
+		var headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
+
+		guard let headerCellConformant = headerCell as? ExpyTableViewHeaderCell else {
+			return headerCell
 		}
 		
-		return expandableCell
+		if visibleSections[indexPath.section] == true {
+			headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
+			headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
+		}else {
+			headerCellConformant.changeState(.willCollapse, cellReuseStatus: true)
+			headerCellConformant.changeState(.didCollapse, cellReuseStatus: true)
+		}
+		return headerCell
 	}
 }
 

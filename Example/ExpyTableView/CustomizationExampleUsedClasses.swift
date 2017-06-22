@@ -13,37 +13,20 @@ import ExpyTableView
 
 class PhoneNameTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 	
-	var currentState: ExpyActionType?
-	
 	@IBOutlet weak var labelPhoneName: UILabel!
 	@IBOutlet weak var imageViewArrow: UIImageView!
 	
-	override func prepareForReuse() {
-		super.prepareForReuse()
-		
-		//Avoiding the side effects of cell reusing
-		switch currentState ?? .collapse { //If your cells are expanded as default, then write (switch currentState ?? .expand) here
-		case .expand:
-			hideSeparator()
-			arrowDown()
-			
-		case .collapse:
-			hideSeparator()
-			arrowRight()
-		}
-	}
-	
-	func change(_ state: ExpyState) {
+	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool) {
 		
 		switch state {
 		case .willExpand:
 			print("WILL EXPAND")
 			hideSeparator()
-			arrowDown()
+			arrowDown(animated: !cellReuse)
 			
 		case .willCollapse:
 			print("WILL COLLAPSE")
-			arrowRight()
+			arrowRight(animated: !cellReuse)
 			
 		case .didExpand:
 			print("DID EXPAND")
@@ -54,14 +37,14 @@ class PhoneNameTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 		}
 	}
 	
-	private func arrowDown() {
-		UIView.animate(withDuration: 0.3) { [weak self] _ in
+	private func arrowDown(animated: Bool) {
+		UIView.animate(withDuration: (animated ? 0.3 : 0)) { [weak self] _ in
 			self?.imageViewArrow.transform = CGAffineTransform(rotationAngle: (CGFloat.pi / 2))
 		}
 	}
 	
-	private func arrowRight() {
-		UIView.animate(withDuration: 0.3) { [weak self] _ in
+	private func arrowRight(animated: Bool) {
+		UIView.animate(withDuration: (animated ? 0.3 : 0)) { [weak self] _ in
 			self?.imageViewArrow.transform = CGAffineTransform(rotationAngle: 0)
 		}
 	}
