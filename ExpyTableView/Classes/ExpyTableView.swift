@@ -126,15 +126,15 @@ extension ExpyTableView {
 }
 
 extension ExpyTableView {
-	public func expand(_ section: Int, inTableView tableView: ExpyTableView) {
-		animate(tableView, with: .expand, forSection: section)
+	public func expand(_ section: Int) {
+		animate(with: .expand, forSection: section)
 	}
 	
-	public func collapse(_ section: Int, inTableView tableView: ExpyTableView) {
-		animate(tableView, with: .collapse, forSection: section)
+	public func collapse(_ section: Int) {
+		animate(with: .collapse, forSection: section)
 	}
 	
-	private func animate(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
+	private func animate(with type: ExpyActionType, forSection section: Int) {
 		guard let sectionIsExpandable = expandableSections[section], sectionIsExpandable else { return }
 		
 		let sectionIsVisible = visibleSections[section] ?? false
@@ -143,7 +143,7 @@ extension ExpyTableView {
 		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
 		
 		visibleSections[section] = (type == .expand)
-		startAnimating(tableView, with: type, forSection: section)
+		startAnimating(self, with: type, forSection: section)
 	}
 	
 	private func startAnimating(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
@@ -244,6 +244,6 @@ extension ExpyTableView: UITableViewDelegate {
 		expyDelegate?.tableView?(tableView, didSelectRowAt: indexPath)
 		
 		guard sectionIsExpandable, indexPath.row == 0 else { return }
-		sectionIsVisible ? collapse(indexPath.section, inTableView: self) : expand(indexPath.section, inTableView: self)
+		sectionIsVisible ? collapse(indexPath.section) : expand(indexPath.section)
 	}
 }
