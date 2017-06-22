@@ -35,7 +35,8 @@ public enum ExpyActionType {
 	case expand, collapse
 }
 
-public protocol ExpyTableViewCell {
+public protocol ExpyTableViewHeaderCell: class {
+	var currentState: ExpyActionType? { get set }
 	func change(_ state: ExpyState)
 }
 
@@ -126,11 +127,11 @@ extension ExpyTableView {
 }
 
 extension ExpyTableView {
-	fileprivate func expand(_ section: Int, inTableView tableView: ExpyTableView) {
+	public func expand(_ section: Int, inTableView tableView: ExpyTableView) {
 		animate(tableView, with: .expand, forSection: section)
 	}
 	
-	fileprivate func collapse(_ section: Int, inTableView tableView: ExpyTableView) {
+	public func collapse(_ section: Int, inTableView tableView: ExpyTableView) {
 		animate(tableView, with: .collapse, forSection: section)
 	}
 	
@@ -143,20 +144,27 @@ extension ExpyTableView {
 		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
 		
 		visibleSections[section] = (type == .expand)
-
+		startAnimating(tableView, with: type, forSection: section)
+	}
+	
+	private func startAnimating(_ tableView: ExpyTableView, with type: ExpyActionType, forSection section: Int) {
+	
 		//Inform the delegates here.
-		((self.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewCell)?.change(type == .expand ? .willExpand : .willCollapse)
+		((self.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewHeaderCell)?.change(type == .expand ? .willExpand : .willCollapse)
 		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
 		
 		CATransaction.begin()
+		self.cellForRow(at: IndexPath(row: 0, section: section))?.isUserInteractionEnabled = false
+			
 		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
 			//Inform the delegates here.
-		((self?.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewCell)?.change(type == .expand ? .didExpand : .didCollapse)
+			((self?.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewHeaderCell)?.change(type == .expand ? .didExpand : .didCollapse)
 			self?.expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
+			self?.cellForRow(at: IndexPath(row: 0, section: section))?.isUserInteractionEnabled = true
 		}
-
+		
 		self.beginUpdates()
-
+		
 		//Don't insert or delete anything if section has only 1 cell.
 		if let sectionRowCount = expyDataSource?.tableView(tableView, numberOfRowsInSection: section), sectionRowCount > 1 {
 			
@@ -206,8 +214,16 @@ extension ExpyTableView: UITableViewDataSource {
 		guard sectionIsExpandable, indexPath.row == 0 else {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
-
-		return expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
+		
+		var expandableCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
+		
+		if visibleSections[indexPath.section] == true {
+			(expandableCell as? ExpyTableViewHeaderCell)?.currentState = .expand
+		}else {
+			(expandableCell as? ExpyTableViewHeaderCell)?.currentState = .collapse
+		}
+		
+		return expandableCell
 	}
 }
 
