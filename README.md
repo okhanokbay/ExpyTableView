@@ -117,9 +117,10 @@ extension ViewController: ExpyTableViewDelegate {
 ```
 
 You can manually expand or collapse any section like below:
+
 ```swift
-  expandableTableView.expand(section)
-  expandableTableView.collapse(section)
+  expandableTableView.expand(0)
+  expandableTableView.collapse(0)
 ```
 
 You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
