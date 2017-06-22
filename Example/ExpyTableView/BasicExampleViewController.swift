@@ -16,6 +16,7 @@ class BasicExampleViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		expandableTableView.dataSource = self
+		expandableTableView.delegate = self //Optional. In this example we use didSelectRowAtIndexPath to solve a known problem. Sepearator disapperance.
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +31,7 @@ extension BasicExampleViewController: ExpyTableViewDataSource {
 	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
 		//Make your customizations here.
+		cell.labelHeader.text = "Section: \(section) Row: 0"
 		return cell
 	}
 }
@@ -49,22 +51,47 @@ extension BasicExampleViewController {
 		switch indexPath.row {
 			
 		// If you define a cell as expandable and return it from expandingCell data source method,
-		// then you will not get callback for IndexPath(row: 0, section: indexPath.section)
+		// then you will not get callback for IndexPath(row: 0, section: indexPath.section) here in cellForRowAtIndexPath
 		//But if you define the same cell as -sometimes not expandable- you will get callbacks for not expandable cells here and you must return a cell for IndexPath(row: 0, section: indexPath.section) in here besides in expandingCell. You can return the same cell from expandingCell method and here.
 			
 		case 1:
-			return tableView.dequeueReusableCell(withIdentifier: String(describing: FirstTableViewCell.self)) as! FirstTableViewCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FirstTableViewCell.self)) as! FirstTableViewCell
+			cell.labelFirst.text = "Section: \(indexPath.section) Row: \(indexPath.row)"
+			return cell
 			
 		case 2:
-			return tableView.dequeueReusableCell(withIdentifier: String(describing: SecondTableViewCell.self)) as! SecondTableViewCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SecondTableViewCell.self)) as! SecondTableViewCell
+			cell.labelSecond.text = "Section: \(indexPath.section) Row: \(indexPath.row)"
+			return cell
 			
 		default:
-			return tableView.dequeueReusableCell(withIdentifier: String(describing: ThirdTableViewCell.self)) as! ThirdTableViewCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ThirdTableViewCell.self)) as! ThirdTableViewCell
+			cell.labelThird.text = "Section: \(indexPath.section) Row: \(indexPath.row)"
+			return cell
 		}
 	}
 }
 
-class FirstTableViewCell: UITableViewCell {}
-class SecondTableViewCell: UITableViewCell {}
-class ThirdTableViewCell: UITableViewCell {}
-class HeaderTableViewCell: UITableViewCell {}
+extension BasicExampleViewController: ExpyTableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		//If you don't deselect the row here, seperator of the above cell of the selected cell disappears.
+		//Check here for detail: https://stackoverflow.com/a/27409583/4168746
+		//This solution obviously has side effects, you can implement your own solution. This is not a bug of ExpyTableView hence you should solve it.
+		tableView.deselectRow(at: indexPath, animated: false)
+		
+		print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
+	}
+}
+
+class FirstTableViewCell: UITableViewCell {
+	@IBOutlet weak var labelFirst: UILabel!
+}
+class SecondTableViewCell: UITableViewCell {
+	@IBOutlet weak var labelSecond: UILabel!
+}
+class ThirdTableViewCell: UITableViewCell {
+	@IBOutlet weak var labelThird: UILabel!
+}
+class HeaderTableViewCell: UITableViewCell {
+	@IBOutlet weak var labelHeader: UILabel!
+}

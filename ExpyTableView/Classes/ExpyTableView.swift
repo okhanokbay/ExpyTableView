@@ -27,8 +27,16 @@
 
 import UIKit
 
-@objc public enum ExpyActionType: Int {
+@objc public enum ExpyState: Int {
+	case willExpand, willCollapse, didExpand, didCollapse
+}
+
+public enum ExpyActionType {
 	case expand, collapse
+}
+
+public protocol ExpyTableViewCell {
+	func change(_ state: ExpyState)
 }
 
 @objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
@@ -37,8 +45,7 @@ import UIKit
 }
 
 @objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
-	@objc optional func expyTableViewWillChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView)
-	@objc optional func expyTableViewDidChangeState(withType type: ExpyActionType, forSection section: Int, inTableView tableView: ExpyTableView)
+	@objc optional func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
 }
 
 open class ExpyTableView: UITableView {
@@ -89,33 +96,29 @@ open class ExpyTableView: UITableView {
 			super.delegate = self
 		}
 	}
-	
-	open func getActionType(forSection section: Int) -> ExpyActionType {
-		let sectionIsVisible = visibleSections[section] ?? false
-		return sectionIsVisible ? .expand : .collapse
-	}
 }
 
 //MARK: Protocol Helper
 extension ExpyTableView {
-	fileprivate func verifyProtocolContainsSelector(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
+	fileprivate func verifyProtocol(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
 		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
 	}
 	
 	override open func responds(to aSelector: Selector!) -> Bool {
-		if verifyProtocolContainsSelector(UITableViewDataSource.self, contains: aSelector) {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
 			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
 			
-		}else if verifyProtocolContainsSelector(UITableViewDelegate.self, contains: aSelector) {
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
 			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
 		}
 		return super.responds(to: aSelector)
 	}
 	
 	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
-		if verifyProtocolContainsSelector(UITableViewDataSource.self, contains: aSelector) {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
 			return expyDataSource
-		}else if verifyProtocolContainsSelector(UITableViewDelegate.self, contains: aSelector) {
+			
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
 			return expyDelegate
 		}
 		return super.forwardingTarget(for: aSelector)
@@ -140,17 +143,20 @@ extension ExpyTableView {
 		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
 		
 		visibleSections[section] = (type == .expand)
+
+		//Inform the delegates here.
+		((self.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewCell)?.change(type == .expand ? .willExpand : .willCollapse)
+		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
 		
-		let completionBlock = { [weak self] () -> (Void) in
-			//Inform the delegate here.
-			self?.expyDelegate?.expyTableViewDidChangeState?(withType: type, forSection: section, inTableView: tableView)
+		CATransaction.begin()
+		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
+			//Inform the delegates here.
+		((self?.cellForRow(at: IndexPath(row: 0, section: section))) as? ExpyTableViewCell)?.change(type == .expand ? .didExpand : .didCollapse)
+			self?.expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
 		}
-		
+
 		self.beginUpdates()
-		
-		//Inform the delegate here.
-		expyDelegate?.expyTableViewWillChangeState?(withType: type, forSection: section, inTableView: tableView)
-		
+
 		//Don't insert or delete anything if section has only 1 cell.
 		if let sectionRowCount = expyDataSource?.tableView(tableView, numberOfRowsInSection: section), sectionRowCount > 1 {
 			
@@ -168,11 +174,9 @@ extension ExpyTableView {
 				self.deleteRows(at: indexesToProcess, with: collapsingAnimation)
 			}
 		}
-		
-		self.reloadRows(at: [IndexPath(row: 0, section: section)], with: .none)
 		self.endUpdates()
 		
-		CATransaction.setCompletionBlock(completionBlock)
+		CATransaction.commit()
 	}
 }
 
