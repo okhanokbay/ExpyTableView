@@ -224,12 +224,14 @@ extension ExpyTableView: UITableViewDataSource {
 			return headerCell
 		}
 		
-		if visibleSections[indexPath.section] == true {
-			headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
-			headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
-		}else {
-			headerCellConformant.changeState(.willCollapse, cellReuseStatus: true)
-			headerCellConformant.changeState(.didCollapse, cellReuseStatus: true)
+		DispatchQueue.main.async { [weak self] _ in
+			if self?.visibleSections[indexPath.section] == true {
+				headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
+				headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
+			}else {
+				headerCellConformant.changeState(.willCollapse, cellReuseStatus: true)
+				headerCellConformant.changeState(.didCollapse, cellReuseStatus: true)
+			}
 		}
 		return headerCell
 	}
