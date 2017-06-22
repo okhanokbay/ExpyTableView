@@ -42,18 +42,18 @@ class ViewController: ExpyTableViewDataSource {
 
 @IBOutlet weak var expandableTableView: ExpyTableView!
 
-  // First, set data source for your table view.
-  override func viewDidLoad() {
-    super.viewDidLoad() 
-    expandableTableView.dataSource = self
-  //Set delegate if you will implement any UITableViewDelegate or ExpyTableViewDelegate methods.
-  //expandableTableView.delegate = self 
-  }
+	// First, set data source for your table view.
+	override func viewDidLoad() {
+		super.viewDidLoad() 
+		expandableTableView.dataSource = self
+		//Set delegate if you will implement any UITableViewDelegate or ExpyTableViewDelegate methods.
+		//expandableTableView.delegate = self 
+	}
 
-  // Then return your expandable cell instance from expandingCell data source method.
-  func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
-    // This cell will be displayed at IndexPath with (section: section and row: 0)
-  }
+	// Then return your expandable cell instance from expandingCell data source method.
+	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+		// This cell will be displayed at IndexPath with (section: section and row: 0)
+	}
 } 
 ```
 
@@ -62,11 +62,11 @@ You are ready to go with the setup above.
 If you want, you can improve the implementation: 
 
 ```swift
-  extension ViewController {
+extension ViewController {
   //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
-  func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
-    return true //Return false if you want your section not to be expandable
-  }
+	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+		return true //Return false if you want your section not to be expandable
+	}
 }
 ```
 
@@ -78,40 +78,42 @@ extension ViewController: ExpyTableViewDelegate {
   //OPTIONAL DELEGATE METHOD, receives callbacks when a section will expand, will collapse, did expand, did collapse. A unified method.
   func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {
 
-  switch state {
-  case .willExpand:
-  print("WILL EXPAND")
+    switch state {
+    case .willExpand:
+    print("WILL EXPAND")
 
-  case .willCollapse:
-  print("WILL COLLAPSE")
+    case .willCollapse:
+    print("WILL COLLAPSE")
 
-  case .didExpand:
-  print("DID EXPAND")
+    case .didExpand:
+    print("DID EXPAND")
 
-  case .didCollapse:
-  print("DID COLLAPSE")
-  }
-} 
+    case .didCollapse:
+    print("DID COLLAPSE")
+    }
+  } 
 
   //OPTIONAL DELEGATE METHOD, if you conform to this in your header cell (which is section: section and row: 0) you will get state change notifications
   //changeState method has a cellReuse parameter to allow you to prepare your cell for reusing. 
   //All state info is allocated by ExpyTableView.
-  class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
+
+class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 
   func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool) {
 
-  switch state {
-  case .willExpand:
-  print("WILL EXPAND")
+    switch state {
+    case .willExpand:
+    print("WILL EXPAND")
 
-  case .willCollapse:
-  print("WILL COLLAPSE")
+    case .willCollapse:
+    print("WILL COLLAPSE")
 
-  case .didExpand: 
-  print("DID EXPAND")
+    case .didExpand: 
+    print("DID EXPAND")
 
-  case .didCollapse:
-  print("DID COLLAPSE")
+    case .didCollapse:
+    print("DID COLLAPSE")
+    }
   }
 }
 ```
@@ -119,20 +121,20 @@ extension ViewController: ExpyTableViewDelegate {
 You can manually expand or collapse any section like below:
 
 ```swift
-  expandableTableView.expand(0) //Expand first section manually
-  expandableTableView.collapse(0) //Collapse first section manually
+expandableTableView.expand(0) //Expand first section manually
+expandableTableView.collapse(0) //Collapse first section manually
 ```
 
 You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
 
 ```swift
-  extension ViewController{
+extension ViewController{
 
   //All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
   //Here you can see two examples below.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
-}
+    print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
+  }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return UITableViewAutomaticDimension
