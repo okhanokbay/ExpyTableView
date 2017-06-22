@@ -47,7 +47,9 @@ class ViewController: ExpyTableViewDataSource {
   
   // Then return your expandable cell instance from expandingCell data source method.
   func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
-    // this cell will be displayed at IndexPath with section: section and row 0
+    let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
+    //Make your customizations here.
+    return cell
   }
 } 
 ```

@@ -17,6 +17,7 @@
 		8305535B1EF8585F00C5AABB /* customization_example.png in Resources */ = {isa = PBXBuildFile; fileRef = 8305535A1EF8585F00C5AABB /* customization_example.png */; };
 		830899F81EF6B8800061A261 /* setting_class_and_module.png in Resources */ = {isa = PBXBuildFile; fileRef = 830899F71EF6B8800061A261 /* setting_class_and_module.png */; };
 		831A72D41EF32BF800D7F300 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831A72D31EF32BF800D7F300 /* Main.storyboard */; };
+		833E03EB1EFBFA36004334B3 /* CustomizationExampleUsedClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E03EA1EFBFA36004334B3 /* CustomizationExampleUsedClasses.swift */; };
 		83E916421EF460F6003D8DFD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E916411EF460F6003D8DFD /* MainViewController.swift */; };
 		83E916441EF46111003D8DFD /* BasicExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E916431EF46111003D8DFD /* BasicExampleViewController.swift */; };
 		83E916481EF46430003D8DFD /* CustomizationExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E916471EF46430003D8DFD /* CustomizationExampleViewController.swift */; };
@@ -50,6 +51,7 @@
 		8305535A1EF8585F00C5AABB /* customization_example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = customization_example.png; sourceTree = "<group>"; };
 		830899F71EF6B8800061A261 /* setting_class_and_module.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_class_and_module.png; sourceTree = "<group>"; };
 		831A72D31EF32BF800D7F300 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		833E03EA1EFBFA36004334B3 /* CustomizationExampleUsedClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizationExampleUsedClasses.swift; sourceTree = "<group>"; };
 		83E916411EF460F6003D8DFD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		83E916431EF46111003D8DFD /* BasicExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicExampleViewController.swift; sourceTree = "<group>"; };
 		83E916471EF46430003D8DFD /* CustomizationExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizationExampleViewController.swift; sourceTree = "<group>"; };
@@ -104,9 +106,9 @@
 		607FACD21AFB9204008FA782 /* Example for ExpyTableView */ = {
 			isa = PBXGroup;
 			children = (
+				833E03E91EFBFA0F004334B3 /* Customization Example */,
+				833E03E81EFBFA06004334B3 /* Basic Example */,
 				83E916411EF460F6003D8DFD /* MainViewController.swift */,
-				83E916431EF46111003D8DFD /* BasicExampleViewController.swift */,
-				83E916471EF46430003D8DFD /* CustomizationExampleViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				831A72D31EF32BF800D7F300 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -169,6 +171,23 @@
 				830899F71EF6B8800061A261 /* setting_class_and_module.png */,
 			);
 			name = Screenshots;
+			sourceTree = "<group>";
+		};
+		833E03E81EFBFA06004334B3 /* Basic Example */ = {
+			isa = PBXGroup;
+			children = (
+				83E916431EF46111003D8DFD /* BasicExampleViewController.swift */,
+			);
+			name = "Basic Example";
+			sourceTree = "<group>";
+		};
+		833E03E91EFBFA0F004334B3 /* Customization Example */ = {
+			isa = PBXGroup;
+			children = (
+				83E916471EF46430003D8DFD /* CustomizationExampleViewController.swift */,
+				833E03EA1EFBFA36004334B3 /* CustomizationExampleUsedClasses.swift */,
+			);
+			name = "Customization Example";
 			sourceTree = "<group>";
 		};
 		A09294AA05F7218FF6F7BF88 /* Pods */ = {
@@ -388,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				833E03EB1EFBFA36004334B3 /* CustomizationExampleUsedClasses.swift in Sources */,
 				83E916481EF46430003D8DFD /* CustomizationExampleViewController.swift in Sources */,
 				83E916441EF46111003D8DFD /* BasicExampleViewController.swift in Sources */,
 				83E916421EF460F6003D8DFD /* MainViewController.swift in Sources */,
