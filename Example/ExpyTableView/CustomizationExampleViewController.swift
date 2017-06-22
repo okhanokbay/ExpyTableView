@@ -33,7 +33,7 @@ class CustomizationExampleViewController: UIViewController {
         super.viewDidLoad()
 				expandableTableView.dataSource = self
 				expandableTableView.delegate = self
-			
+
 				expandableTableView.rowHeight = UITableViewAutomaticDimension
 				expandableTableView.estimatedRowHeight = 44
 			
