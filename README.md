@@ -170,7 +170,7 @@ To run the example project, just download the project and open the xcworkspace f
 - Add a variable that allows clicking on any cell in section to expand or collapse the whole section
 - Add expandAll and collapseAll methods and functionality
 
-All contributions about these issues or other things are really appreciated.
+All contributions about
 
 ## License
 
