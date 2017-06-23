@@ -76,8 +76,12 @@ extension BasicExampleViewController: ExpyTableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		//If you don't deselect the row here, seperator of the above cell of the selected cell disappears.
 		//Check here for detail: https://stackoverflow.com/a/27409583/4168746
-		//This solution obviously has side effects, you can implement your own solution. This is not a bug of ExpyTableView hence you should solve it.
+		
 		tableView.deselectRow(at: indexPath, animated: false)
+		
+		//This solution obviously has side effects, you can implement your own solution from the given link.
+		//This is not a bug of ExpyTableView hence, I think, you should solve it with the proper way for your implementation.
+		//If you have a generic solution for this, please submit a pull request or open an issue.
 		
 		print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
 	}
