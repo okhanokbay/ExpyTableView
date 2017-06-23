@@ -43,7 +43,7 @@ import ExpyTableView
 
 class ViewController: ExpyTableViewDataSource {
 
-@IBOutlet weak var expandableTableView: ExpyTableView!
+  @IBOutlet weak var expandableTableView: ExpyTableView!
 
   // First, set data source for your table view.
   override func viewDidLoad() {
