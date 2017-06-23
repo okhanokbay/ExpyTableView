@@ -120,7 +120,7 @@ extension CustomizationExampleViewController {
 extension CustomizationExampleViewController {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		//If you don't deselect the row here, seperator of the above cell of the selected cell disappears.
-		//Check here for detail: https://stackoverflow.com/a/27409583/4168746
+		//Check here for detail: https://stackoverflow.com/questions/18924589/uitableviewcell-separator-disappearing-in-ios7
 		
 		tableView.deselectRow(at: indexPath, animated: false)
 		
