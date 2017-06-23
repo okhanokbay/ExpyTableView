@@ -39,6 +39,8 @@ First of all, if you are using Interface Builder, set your table view's class an
 Then start implementing required methods:
 
 ```swift
+import ExpyTableView
+
 class ViewController: ExpyTableViewDataSource {
 
 @IBOutlet weak var expandableTableView: ExpyTableView!
@@ -71,7 +73,7 @@ extension ViewController {
 }
 ```
 
-You can use optional delegate methods:
+You can use **optional** delegate method:
 
 ```swift
 extension ViewController: ExpyTableViewDelegate {
@@ -93,13 +95,17 @@ extension ViewController: ExpyTableViewDelegate {
     print("DID COLLAPSE")
     }
   } 
+```
 
-  //OPTIONAL DELEGATE METHOD, if you conform to this in your header cell (which is section: section and row: 0) you will get state change notifications
-  //changeState method has a cellReuse parameter to allow you to prepare your cell for reusing. 
-  //All state info is allocated by ExpyTableView.
+If your header cell (which is section: section and row: 0) conforms to **ExpyTableViewHeaderCell** protocol which is **optional**, it gets notifications in changeState method: 
+(See example project for more detailed usage)
+
+```swift
 
 class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 
+  //changeState method has a cellReuse parameter to allow you to prepare your cell for reusing. 
+  //All state info is allocated by ExpyTableView.
   func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool) {
 
     switch state {
