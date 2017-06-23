@@ -164,7 +164,7 @@ See example code for more details and implementation examples.
 
 To run the example project, just download the project and open the xcworkspace file in Example folder.
 
-## TODO
+## Roadmap
 - Add a variable that allows collapsing the recently expanded cell, when any other cell is expanded 
 - Add a variable that allows scrolling to recent expanded cell rect to sohw it completely
 - Add a variable that allows clicking on any cell in section to expand or collapse the whole section
