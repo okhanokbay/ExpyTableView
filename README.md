@@ -13,10 +13,6 @@ ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/
 
 With **ExpyTableView**, you make an expandable table view by using multiple cells and inserting/deleting them(which can mean expanding and collapsing). With this approach, you will have a great chance in future design requests. All you will have to do is adding a new UITableViewCell and writing the code for it. You will easily have the new design.
 
-## ScreenShots 
-
-<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/customization_example_0.3.0.png" width=300> <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen_0.3.0.png" width=300>
-
 ## Requirements
 
 - iOS 8.0+
@@ -173,6 +169,10 @@ To run the example project, just download the project and open the xcworkspace f
 - Add expandAll and collapseAll methods and functionality
 
 All contributions about these issues or other improvements are really appreciated.
+
+## ScreenShots 
+
+<img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/customization_example_0.3.0.png" width=300> <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen_0.3.0.png" width=300>
 
 ## License
 
