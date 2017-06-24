@@ -5,6 +5,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/ExpyTableView.svg?style=flat)](http://cocoapods.org/pods/ExpyTableView)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/okhanokbay/ExpyTableView/issues)
 
+![Alt Text](https://media.giphy.com/media/p6kbiL0rFACbK/giphy.gif)
+
 ## About
 
 ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/OliverLetterer/SLExpandableTableView). Takes some ideas, concepts and codes and regenerates them in Swift. Lets you create expandable table views as easily as its ancestor. 
