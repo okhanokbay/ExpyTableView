@@ -53,7 +53,7 @@ class ViewController: ExpyTableViewDataSource {
     //expandableTableView.delegate = self 
   }
 
-  // Then return your expandable cell instance from expandingCell data source method.
+  // Then return your expandable cell instance from this data source method.
   func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
     // This cell will be displayed at IndexPath with (section: section and row: 0)
   }
@@ -128,8 +128,13 @@ class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 You can manually expand or collapse any section like below:
 
 ```swift
-expandableTableView.expand(0) //Expand first section manually
-expandableTableView.collapse(0) //Collapse first section manually
+  //These two methods are exposed publicly.
+  public func expand(_ section: Int) {}
+  public func collapse(_ section: Int) {}
+
+  //You can use these methods as below.
+  expandableTableView.collapse(0) //Collapse section at (index: 0) manually
+  expandableTableView.expand(1) //Expand section at (index: 1) manually
 ```
 
 You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
