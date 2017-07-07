@@ -83,16 +83,16 @@ extension ViewController: ExpyTableViewDelegate {
 
     switch state {
     case .willExpand:
-    print("WILL EXPAND")
+     print("WILL EXPAND")
 
     case .willCollapse:
-    print("WILL COLLAPSE")
+     print("WILL COLLAPSE")
 
     case .didExpand:
-    print("DID EXPAND")
+     print("DID EXPAND")
 
     case .didCollapse:
-    print("DID COLLAPSE")
+     print("DID COLLAPSE")
     }
   } 
 ```
@@ -110,16 +110,16 @@ class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 
     switch state {
     case .willExpand:
-    print("WILL EXPAND")
+     print("WILL EXPAND")
 
     case .willCollapse:
-    print("WILL COLLAPSE")
+     print("WILL COLLAPSE")
 
     case .didExpand: 
-    print("DID EXPAND")
+     print("DID EXPAND")
 
     case .didCollapse:
-    print("DID COLLAPSE")
+     print("DID COLLAPSE")
     }
   }
 }
