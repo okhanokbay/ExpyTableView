@@ -168,7 +168,7 @@ To run the example project, just download the project and open the xcworkspace f
 
 All contributions about these issues or other improvements are really appreciated.
 
-## ScreenShots 
+## Screenshots 
 
 <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/customization_example_0.3.0.png" width=300> <img src="https://github.com/okhanokbay/ExpyTableView/blob/master/Example/sample_screen_0.3.0.png" width=300>
 
