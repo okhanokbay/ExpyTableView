@@ -28,7 +28,7 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ExpyTableView'
 ```
-Or you can manually drag and drop the ExpyTableViewCell.swift to your project, then use it.
+Or you can manually drag and drop the ExpyTableView.swift to your project, then use it.
 
 ## How to use
 
