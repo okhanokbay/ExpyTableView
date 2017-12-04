@@ -60,6 +60,23 @@ class ViewController: ExpyTableViewDataSource {
 } 
 ```
 
+```obj-c
+
+#import "ExpyTableView-Swift.h"
+
+@interface BasicExampleViewController : UIViewController <ExpyTableViewDelegate, ExpyTableViewDataSource>
+
+@property (nonatomic, strong) IBOutlet ExpyTableView *expandableTableView;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.expandableTableView.dataSource = self;
+    self.expandableTableView.delegate = self;
+}
+- (UITableViewCell *) expandableCellForSection:(NSInteger)section inTableView:(ExpyTableView *)tableView{
+    // This cell will be displayed at IndexPath with (section: section and row: 0)
+}
+```
 **You are ready to go with the setup above.**
 
 ## Customization (optional)
@@ -70,6 +87,12 @@ extension ViewController {
   func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
     return true //Return false if you want your section not to be expandable
   }
+}
+```
+
+```obj-c
+- (BOOL) canExpandWithSection:(NSInteger)section inTableView:(ExpyTableView *)tableView{
+    return true;
 }
 ```
 
@@ -95,6 +118,25 @@ extension ViewController: ExpyTableViewDelegate {
      print("DID COLLAPSE")
     }
   } 
+```
+
+```obj-c
+//OPTIONAL DELEGATE METHOD, receives callbacks when a section will expand, will collapse, did expand, did collapse. A unified method.
+- (void)tableView:(ExpyTableView *)tableView expyState:(enum ExpyState)state changeForSection:(NSInteger)section{
+    switch (state) {
+    case ExpyStateWillExpand:
+        NSLog(@"WILL EXPAND");
+        break;
+    case ExpyStateWillCollapse:
+        NSLog(@"WILL COLLAPSE");
+        break;
+    case ExpyStateDidExpand:
+        NSLog(@"DID EXPAND");
+        break;
+    case ExpyStateDidCollapse:
+        NSLog(@"DID COLLAPSE");
+        break;
+}
 ```
 
 If your header cell (which is section: section and row: 0) conforms to **ExpyTableViewHeaderCell** protocol which is **optional**, it gets notifications in changeState method: 
@@ -125,6 +167,24 @@ class YourTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 }
 ```
 
+```obj-c
+//OPTIONAL DELEGATE METHOD, receives callbacks when a section will expand, will collapse, did expand, did collapse. A unified method.
+- (void) changeState:(enum ExpyState)state cellReuseStatus:(BOOL)cellReuse{
+    switch (state) {
+        case ExpyStateWillExpand:
+            NSLog(@"WILL EXPAND");
+            break;
+        case ExpyStateWillCollapse:
+            NSLog(@"WILL COLLAPSE");
+            break;
+        case ExpyStateDidExpand:
+            NSLog(@"DID EXPAND");
+            break;
+        case ExpyStateDidCollapse:
+            NSLog(@"DID COLLAPSE");
+            break;
+}
+```
 You can manually expand or collapse any section like below:
 
 ```swift
@@ -135,6 +195,12 @@ You can manually expand or collapse any section like below:
   //You can use these methods as below.
   expandableTableView.collapse(0) //Collapse section at (index: 0) manually
   expandableTableView.expand(1) //Expand section at (index: 1) manually
+```
+
+```obj-c
+    //You can use these methods as below.
+    [expandableTableView collapse:0]; //Collapse section at (index: 0) manually
+    [expandableTableView expand:0]; //Expand section at (index: 1) manually
 ```
 
 You will get callbacks for all of the **UITableViewDataSource** or **UITableViewDelegate** methods. Just conform to **ExpyTableViewDataSource** and **ExpyTableViewDelegate** and they will forward you all the methods you need.
@@ -154,11 +220,20 @@ extension ViewController{
 }
 ```
 
+```obj-c
+//All of the UITableViewDataSource and UITableViewDelegate methods will be forwarded to you right as they are.
+//Here you can see two examples below.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"DID SELECT row: (%ld), section: (%ld)", indexPath.row, indexPath.section);
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+```
+
 See example code for more details and implementation examples.
-
-## How to use (obj-c)
-
-TODO
 
 ## Example
 

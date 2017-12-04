@@ -142,4 +142,20 @@
     return UITableViewAutomaticDimension;
 }
 
+- (void)tableView:(ExpyTableView *)tableView expyState:(enum ExpyState)state changeForSection:(NSInteger)section{
+    switch (state) {
+        case ExpyStateWillExpand:
+            NSLog(@"WILL EXPAND");
+            break;
+        case ExpyStateWillCollapse:
+            NSLog(@"WILL COLLAPSE");
+            break;
+        case ExpyStateDidExpand:
+            NSLog(@"DID EXPAND");
+            break;
+        case ExpyStateDidCollapse:
+            NSLog(@"DID COLLAPSE");
+            break;
+}
+
 @end
