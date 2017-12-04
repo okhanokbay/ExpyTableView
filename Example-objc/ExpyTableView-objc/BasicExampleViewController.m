@@ -39,28 +39,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCell"];
     switch (indexPath.row) {
         case 1: {
-            FirstTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirstTableViewCell"];
-            cell.labelFirst.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
             return cell;
         }
         case 2: {
-            SecondTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SecondTableViewCell"];
-            cell.labelSecond.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
             return cell;
         }
         default: {
-            ThirdTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThirdTableViewCell"];
-            cell.labelThird.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"Section: (%ld) Row: (%ld)", indexPath.section, indexPath.row];
             return cell;
         }
     }
 }
 
 - (UITableViewCell *) expandableCellForSection:(NSInteger)section inTableView:(ExpyTableView *)tableView{
-    HeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell"];
-    cell.labelHeader.text = [NSString stringWithFormat:@"Section: (%ld) Row: 0", section];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Section: (%ld) Row: 0", section];
     return cell;
 }
 
