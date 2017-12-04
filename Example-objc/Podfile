@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'ExpyTableView-objc' do
+  pod 'ExpyTableView', :path => '../'
+end

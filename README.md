@@ -156,6 +156,9 @@ extension ViewController{
 
 See example code for more details and implementation examples.
 
+## How to use (obj-c)
+
+
 ## Example
 
 To run the example project, just download the project and open the xcworkspace file in Example folder.

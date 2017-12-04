@@ -36,12 +36,12 @@ public enum ExpyActionType {
 }
 
 @objc public protocol ExpyTableViewHeaderCell: class {
-	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
+	@objc func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
 }
 
 @objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
 	@objc optional func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool //default is true, which means all header cells are expandable
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
+	@objc func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
 }
 
 @objc public protocol ExpyTableViewDelegate: UITableViewDelegate {

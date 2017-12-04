@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD8D594F18665706D83D7AC6 /* Pods_ExpyTableView_objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E30C28A5C3D3B2F56E712E7 /* Pods_ExpyTableView_objc.framework */; };
+		EDBCB0661FD5916C00FA4838 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0651FD5916C00FA4838 /* AppDelegate.m */; };
+		EDBCB06C1FD5916C00FA4838 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBCB06A1FD5916C00FA4838 /* Main.storyboard */; };
+		EDBCB0711FD5916C00FA4838 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDBCB06F1FD5916C00FA4838 /* LaunchScreen.storyboard */; };
+		EDBCB0741FD5916C00FA4838 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0731FD5916C00FA4838 /* main.m */; };
+		EDBCB07D1FD59DE200FA4838 /* BasicExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */; };
+		EDBCB0831FD5A2F100FA4838 /* CustomizationExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */; };
+		EDBCB0861FD5A32800FA4838 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0851FD5A32800FA4838 /* MainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1901983064FDE37C7641562E /* Pods-ExpyTableView-objc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView-objc.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView-objc/Pods-ExpyTableView-objc.release.xcconfig"; sourceTree = "<group>"; };
+		5D9727D73D2A405D5FC45FDC /* Pods-ExpyTableView-objc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpyTableView-objc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpyTableView-objc/Pods-ExpyTableView-objc.debug.xcconfig"; sourceTree = "<group>"; };
+		6E30C28A5C3D3B2F56E712E7 /* Pods_ExpyTableView_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_objc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDBCB0611FD5916B00FA4838 /* ExpyTableView-objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExpyTableView-objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDBCB0641FD5916B00FA4838 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EDBCB0651FD5916C00FA4838 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EDBCB06B1FD5916C00FA4838 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EDBCB0701FD5916C00FA4838 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EDBCB0721FD5916C00FA4838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDBCB0731FD5916C00FA4838 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EDBCB07A1FD59DBD00FA4838 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EDBCB07B1FD59DE200FA4838 /* BasicExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicExampleViewController.h; sourceTree = "<group>"; };
+		EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicExampleViewController.m; sourceTree = "<group>"; };
+		EDBCB07E1FD59F2E00FA4838 /* ExpyTableView-objc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpyTableView-objc-Bridging-Header.h"; sourceTree = "<group>"; };
+		EDBCB0811FD5A2F100FA4838 /* CustomizationExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizationExampleViewController.h; sourceTree = "<group>"; };
+		EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizationExampleViewController.m; sourceTree = "<group>"; };
+		EDBCB0841FD5A32800FA4838 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EDBCB0851FD5A32800FA4838 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EDBCB05E1FD5916B00FA4838 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD8D594F18665706D83D7AC6 /* Pods_ExpyTableView_objc.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		99B6676BE01FDBFC705AD1C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6E30C28A5C3D3B2F56E712E7 /* Pods_ExpyTableView_objc.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F88EBC423C776643E76FEAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D9727D73D2A405D5FC45FDC /* Pods-ExpyTableView-objc.debug.xcconfig */,
+				1901983064FDE37C7641562E /* Pods-ExpyTableView-objc.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EDBCB0581FD5916B00FA4838 = {
+			isa = PBXGroup;
+			children = (
+				EDBCB0631FD5916B00FA4838 /* ExpyTableView-objc */,
+				EDBCB0621FD5916B00FA4838 /* Products */,
+				9F88EBC423C776643E76FEAF /* Pods */,
+				99B6676BE01FDBFC705AD1C2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EDBCB0621FD5916B00FA4838 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCB0611FD5916B00FA4838 /* ExpyTableView-objc.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EDBCB0631FD5916B00FA4838 /* ExpyTableView-objc */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCB0641FD5916B00FA4838 /* AppDelegate.h */,
+				EDBCB0651FD5916C00FA4838 /* AppDelegate.m */,
+				EDBCB0841FD5A32800FA4838 /* MainViewController.h */,
+				EDBCB0851FD5A32800FA4838 /* MainViewController.m */,
+				EDBCB07B1FD59DE200FA4838 /* BasicExampleViewController.h */,
+				EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */,
+				EDBCB0811FD5A2F100FA4838 /* CustomizationExampleViewController.h */,
+				EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */,
+				EDBCB06A1FD5916C00FA4838 /* Main.storyboard */,
+				EDBCB07A1FD59DBD00FA4838 /* Images.xcassets */,
+				EDBCB06F1FD5916C00FA4838 /* LaunchScreen.storyboard */,
+				EDBCB0721FD5916C00FA4838 /* Info.plist */,
+				EDBCB07E1FD59F2E00FA4838 /* ExpyTableView-objc-Bridging-Header.h */,
+				EDBCB0731FD5916C00FA4838 /* main.m */,
+			);
+			path = "ExpyTableView-objc";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EDBCB0601FD5916B00FA4838 /* ExpyTableView-objc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDBCB0771FD5916C00FA4838 /* Build configuration list for PBXNativeTarget "ExpyTableView-objc" */;
+			buildPhases = (
+				CDE0E076868CC0B509032259 /* [CP] Check Pods Manifest.lock */,
+				EDBCB05D1FD5916B00FA4838 /* Sources */,
+				EDBCB05E1FD5916B00FA4838 /* Frameworks */,
+				EDBCB05F1FD5916B00FA4838 /* Resources */,
+				74F9FCE6CA34861862821803 /* [CP] Embed Pods Frameworks */,
+				C8B82ADCDD4D58D5A985F9BD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExpyTableView-objc";
+			productName = "ExpyTableView-Example-objc";
+			productReference = EDBCB0611FD5916B00FA4838 /* ExpyTableView-objc.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EDBCB0591FD5916B00FA4838 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Lorenzo Primiterra";
+				TargetAttributes = {
+					EDBCB0601FD5916B00FA4838 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EDBCB05C1FD5916B00FA4838 /* Build configuration list for PBXProject "ExpyTableView-objc" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EDBCB0581FD5916B00FA4838;
+			productRefGroup = EDBCB0621FD5916B00FA4838 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EDBCB0601FD5916B00FA4838 /* ExpyTableView-objc */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EDBCB05F1FD5916B00FA4838 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDBCB0711FD5916C00FA4838 /* LaunchScreen.storyboard in Resources */,
+				EDBCB06C1FD5916C00FA4838 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		74F9FCE6CA34861862821803 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ExpyTableView-objc/Pods-ExpyTableView-objc-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ExpyTableView/ExpyTableView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpyTableView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpyTableView-objc/Pods-ExpyTableView-objc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8B82ADCDD4D58D5A985F9BD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpyTableView-objc/Pods-ExpyTableView-objc-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDE0E076868CC0B509032259 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExpyTableView-objc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDBCB05D1FD5916B00FA4838 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDBCB0741FD5916C00FA4838 /* main.m in Sources */,
+				EDBCB0661FD5916C00FA4838 /* AppDelegate.m in Sources */,
+				EDBCB07D1FD59DE200FA4838 /* BasicExampleViewController.m in Sources */,
+				EDBCB0861FD5A32800FA4838 /* MainViewController.m in Sources */,
+				EDBCB0831FD5A2F100FA4838 /* CustomizationExampleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EDBCB06A1FD5916C00FA4838 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDBCB06B1FD5916C00FA4838 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EDBCB06F1FD5916C00FA4838 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDBCB0701FD5916C00FA4838 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EDBCB0751FD5916C00FA4838 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EDBCB0761FD5916C00FA4838 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EDBCB0781FD5916C00FA4838 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D9727D73D2A405D5FC45FDC /* Pods-ExpyTableView-objc.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YUY24YXWK4;
+				INFOPLIST_FILE = "ExpyTableView-objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ExpyTableView-Example-objc";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExpyTableView-objc/ExpyTableView-objc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EDBCB0791FD5916C00FA4838 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1901983064FDE37C7641562E /* Pods-ExpyTableView-objc.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YUY24YXWK4;
+				INFOPLIST_FILE = "ExpyTableView-objc/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ExpyTableView-Example-objc";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ExpyTableView-objc/ExpyTableView-objc-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EDBCB05C1FD5916B00FA4838 /* Build configuration list for PBXProject "ExpyTableView-objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDBCB0751FD5916C00FA4838 /* Debug */,
+				EDBCB0761FD5916C00FA4838 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDBCB0771FD5916C00FA4838 /* Build configuration list for PBXNativeTarget "ExpyTableView-objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDBCB0781FD5916C00FA4838 /* Debug */,
+				EDBCB0791FD5916C00FA4838 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EDBCB0591FD5916B00FA4838 /* Project object */;
+}
