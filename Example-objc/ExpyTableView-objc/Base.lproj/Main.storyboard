@@ -66,7 +66,7 @@
         <!--Customization Example View Controller-->
         <scene sceneID="hYQ-5N-Ozz">
             <objects>
-                <viewController id="39Z-Bk-C17" customClass="CustomizationExampleViewController" customModule="ExpyTableView_objc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="39Z-Bk-C17" customClass="CustomizationExampleViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KGv-BR-YQw"/>
                         <viewControllerLayoutGuide type="bottom" id="HD6-NM-0P7"/>
@@ -79,7 +79,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhoneNameTableViewCell" id="KQy-Is-h5T" customClass="PhoneNameTableViewCell" customModule="ExpyTableView_objc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhoneNameTableViewCell" id="KQy-Is-h5T" customClass="PhoneNameTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KQy-Is-h5T" id="Jhx-gi-a0T">
@@ -109,11 +109,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imageViewArrow" destination="5Do-eM-pYu" id="tbt-sv-PAq"/>
-                                            <outlet property="labelPhoneName" destination="dKI-4L-W7X" id="b8l-Li-4aG"/>
+                                            <outlet property="imageViewArrow" destination="5Do-eM-pYu" id="hfx-vC-Kbi"/>
+                                            <outlet property="labelPhoneName" destination="dKI-4L-W7X" id="4VQ-SA-iaO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SpecificationTableViewCell" id="cfr-QI-UQd" customClass="SpecificationTableViewCell" customModule="ExpyTableView_objc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SpecificationTableViewCell" id="cfr-QI-UQd" customClass="SpecificationTableViewCell">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cfr-QI-UQd" id="brA-Qn-Qek">
@@ -135,10 +135,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="labelSpecification" destination="C58-uQ-JvT" id="WpJ-aW-rES"/>
+                                            <outlet property="labelSpecification" destination="C58-uQ-JvT" id="cou-kz-rbe"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BuyTableViewCell" id="eaT-HI-tiA" customClass="BuyTableViewCell" customModule="ExpyTableView_objc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BuyTableViewCell" id="eaT-HI-tiA" customClass="BuyTableViewCell">
                                         <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eaT-HI-tiA" id="ZZB-h5-vcd">
@@ -172,7 +172,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="expandableTableView" destination="5uU-JR-fsw" id="2EW-po-L2G"/>
+                        <outlet property="expandableTableView" destination="5uU-JR-fsw" id="mSh-h7-v75"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHd-ap-Nd3" userLabel="First Responder" sceneMemberID="firstResponder"/>

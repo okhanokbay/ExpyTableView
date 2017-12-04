@@ -15,6 +15,9 @@
 		EDBCB07D1FD59DE200FA4838 /* BasicExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */; };
 		EDBCB0831FD5A2F100FA4838 /* CustomizationExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */; };
 		EDBCB0861FD5A32800FA4838 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0851FD5A32800FA4838 /* MainViewController.m */; };
+		EDBCB0991FD5F73200FA4838 /* PhoneNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB0981FD5F73200FA4838 /* PhoneNameTableViewCell.m */; };
+		EDBCB09C1FD5F7C400FA4838 /* SpecificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB09B1FD5F7C400FA4838 /* SpecificationTableViewCell.m */; };
+		EDBCB09F1FD5F7D400FA4838 /* BuyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBCB09E1FD5F7D400FA4838 /* BuyTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,12 @@
 		EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizationExampleViewController.m; sourceTree = "<group>"; };
 		EDBCB0841FD5A32800FA4838 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		EDBCB0851FD5A32800FA4838 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EDBCB0971FD5F73200FA4838 /* PhoneNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhoneNameTableViewCell.h; sourceTree = "<group>"; };
+		EDBCB0981FD5F73200FA4838 /* PhoneNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneNameTableViewCell.m; sourceTree = "<group>"; };
+		EDBCB09A1FD5F7C400FA4838 /* SpecificationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecificationTableViewCell.h; sourceTree = "<group>"; };
+		EDBCB09B1FD5F7C400FA4838 /* SpecificationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpecificationTableViewCell.m; sourceTree = "<group>"; };
+		EDBCB09D1FD5F7D400FA4838 /* BuyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyTableViewCell.h; sourceTree = "<group>"; };
+		EDBCB09E1FD5F7D400FA4838 /* BuyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,14 +97,11 @@
 		EDBCB0631FD5916B00FA4838 /* ExpyTableView-objc */ = {
 			isa = PBXGroup;
 			children = (
+				EDBCB0941FD5F6FC00FA4838 /* Example for ExpyTableView */,
 				EDBCB0641FD5916B00FA4838 /* AppDelegate.h */,
 				EDBCB0651FD5916C00FA4838 /* AppDelegate.m */,
 				EDBCB0841FD5A32800FA4838 /* MainViewController.h */,
 				EDBCB0851FD5A32800FA4838 /* MainViewController.m */,
-				EDBCB07B1FD59DE200FA4838 /* BasicExampleViewController.h */,
-				EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */,
-				EDBCB0811FD5A2F100FA4838 /* CustomizationExampleViewController.h */,
-				EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */,
 				EDBCB06A1FD5916C00FA4838 /* Main.storyboard */,
 				EDBCB07A1FD59DBD00FA4838 /* Images.xcassets */,
 				EDBCB06F1FD5916C00FA4838 /* LaunchScreen.storyboard */,
@@ -104,6 +110,39 @@
 				EDBCB0731FD5916C00FA4838 /* main.m */,
 			);
 			path = "ExpyTableView-objc";
+			sourceTree = "<group>";
+		};
+		EDBCB0941FD5F6FC00FA4838 /* Example for ExpyTableView */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCB0951FD5F70400FA4838 /* Basic Example */,
+				EDBCB0961FD5F70C00FA4838 /* Customization Example */,
+			);
+			path = "Example for ExpyTableView";
+			sourceTree = "<group>";
+		};
+		EDBCB0951FD5F70400FA4838 /* Basic Example */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCB07B1FD59DE200FA4838 /* BasicExampleViewController.h */,
+				EDBCB07C1FD59DE200FA4838 /* BasicExampleViewController.m */,
+			);
+			path = "Basic Example";
+			sourceTree = "<group>";
+		};
+		EDBCB0961FD5F70C00FA4838 /* Customization Example */ = {
+			isa = PBXGroup;
+			children = (
+				EDBCB0811FD5A2F100FA4838 /* CustomizationExampleViewController.h */,
+				EDBCB0821FD5A2F100FA4838 /* CustomizationExampleViewController.m */,
+				EDBCB0971FD5F73200FA4838 /* PhoneNameTableViewCell.h */,
+				EDBCB0981FD5F73200FA4838 /* PhoneNameTableViewCell.m */,
+				EDBCB09A1FD5F7C400FA4838 /* SpecificationTableViewCell.h */,
+				EDBCB09B1FD5F7C400FA4838 /* SpecificationTableViewCell.m */,
+				EDBCB09D1FD5F7D400FA4838 /* BuyTableViewCell.h */,
+				EDBCB09E1FD5F7D400FA4838 /* BuyTableViewCell.m */,
+			);
+			path = "Customization Example";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,10 +273,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDBCB09F1FD5F7D400FA4838 /* BuyTableViewCell.m in Sources */,
+				EDBCB09C1FD5F7C400FA4838 /* SpecificationTableViewCell.m in Sources */,
 				EDBCB0741FD5916C00FA4838 /* main.m in Sources */,
 				EDBCB0661FD5916C00FA4838 /* AppDelegate.m in Sources */,
 				EDBCB07D1FD59DE200FA4838 /* BasicExampleViewController.m in Sources */,
 				EDBCB0861FD5A32800FA4838 /* MainViewController.m in Sources */,
+				EDBCB0991FD5F73200FA4838 /* PhoneNameTableViewCell.m in Sources */,
 				EDBCB0831FD5A2F100FA4838 /* CustomizationExampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
