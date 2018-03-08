@@ -78,11 +78,12 @@ class CustomizationExampleViewController: UIViewController {
 
 //MARK: ExpyTableViewDataSourceMethods
 extension CustomizationExampleViewController: ExpyTableViewDataSource {
-	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+	
+	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
 		return true
 	}
-		
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+	
+	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhoneNameTableViewCell.self)) as! PhoneNameTableViewCell
 		cell.labelPhoneName.text = sampleData[section].first!
 		cell.layoutMargins = UIEdgeInsets.zero

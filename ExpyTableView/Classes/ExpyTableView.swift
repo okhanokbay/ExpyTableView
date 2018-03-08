@@ -27,7 +27,13 @@
 
 import UIKit
 
-@objc public enum ExpyState: Int {
+public struct ExpyTableViewDefaultValues {
+	public static let expandableStatus = true
+	public static let expandingAnimation: UITableViewRowAnimation = .fade
+	public static let collapsingAnimation: UITableViewRowAnimation = .fade
+}
+
+public enum ExpyState: Int {
 	case willExpand, willCollapse, didExpand, didCollapse
 }
 
@@ -35,17 +41,27 @@ public enum ExpyActionType {
 	case expand, collapse
 }
 
-@objc public protocol ExpyTableViewHeaderCell: class {
+public protocol ExpyTableViewHeaderCell: class {
 	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
 }
 
-@objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
-	@objc optional func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool //default is true, which means all header cells are expandable
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
+public protocol ExpyTableViewDataSource: UITableViewDataSource {
+	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool
+	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell
 }
 
-@objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
-	@objc optional func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
+public extension ExpyTableViewDataSource {
+	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
+		return ExpyTableViewDefaultValues.expandableStatus
+	}
+}
+
+public protocol ExpyTableViewDelegate: UITableViewDelegate {
+	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
+}
+
+public extension ExpyTableViewDelegate {
+	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {}
 }
 
 open class ExpyTableView: UITableView {
@@ -55,8 +71,8 @@ open class ExpyTableView: UITableView {
 	
 	public fileprivate(set) var expandedSections: [Int: Bool] = [:]
 	
-	open var expandingAnimation: UITableViewRowAnimation = .fade
-	open var collapsingAnimation: UITableViewRowAnimation = .fade
+	open var expandingAnimation: UITableViewRowAnimation = ExpyTableViewDefaultValues.expandingAnimation
+	open var collapsingAnimation: UITableViewRowAnimation = ExpyTableViewDefaultValues.collapsingAnimation
 	
 	public override init(frame: CGRect, style: UITableViewStyle) {
 		super.init(frame: frame, style: style)
@@ -67,9 +83,9 @@ open class ExpyTableView: UITableView {
 	}
 	
 	open override var dataSource: UITableViewDataSource? {
-		get {
-			return super.dataSource
-		}
+		
+		get { return super.dataSource }
+		
 		set(dataSource) {
 			guard let dataSource = dataSource else { return }
 			expyDataSource = dataSource as? ExpyTableViewDataSource
@@ -78,9 +94,9 @@ open class ExpyTableView: UITableView {
 	}
 	
 	open override var delegate: UITableViewDelegate? {
-		get {
-			return super.delegate
-		}
+		
+		get { return super.delegate }
+		
 		set(delegate) {
 			guard let delegate = delegate else { return }
 			expyDelegate = delegate as? ExpyTableViewDelegate
@@ -94,33 +110,6 @@ open class ExpyTableView: UITableView {
 			//Set UITableViewDelegate even if ExpyTableViewDelegate is nil. Because we are getting callbacks here in didSelectRowAtIndexPath UITableViewDelegate method.
 			super.delegate = self
 		}
-	}
-}
-
-//MARK: Protocol Helper
-extension ExpyTableView {
-	fileprivate func verifyProtocol(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
-		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
-	}
-	
-	override open func responds(to aSelector: Selector!) -> Bool {
-		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
-			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
-			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
-			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
-		}
-		return super.responds(to: aSelector)
-	}
-	
-	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
-		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
-			return expyDataSource
-			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
-			return expyDelegate
-		}
-		return super.forwardingTarget(for: aSelector)
 	}
 }
 
@@ -141,7 +130,7 @@ extension ExpyTableView {
 		//If section is visible and action type is expand, OR, If section is not visible and action type is collapse, return.
 		if ((type == .expand) && (sectionIsExpanded)) || ((type == .collapse) && (!sectionIsExpanded)) { return }
 		
-		assign(section: section, asExpanded: (type == .expand))
+		assign(section, asExpanded: (type == .expand))
 		startAnimating(self, with: type, forSection: section)
 	}
 	
@@ -155,13 +144,13 @@ extension ExpyTableView {
 		
 		//Inform the delegates here.
 		headerCellConformant?.changeState((type == .expand ? .willExpand : .willCollapse), cellReuseStatus: false)
-		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
+		expyDelegate?.tableView(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
 
 		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
 			//Inform the delegates here.
 			headerCellConformant?.changeState((type == .expand ? .didExpand : .didCollapse), cellReuseStatus: false)
 			
-			self?.expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
+			self?.expyDelegate?.tableView(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
 			headerCell?.isUserInteractionEnabled = true
 		}
 		
@@ -205,7 +194,7 @@ extension ExpyTableView: UITableViewDataSource {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
 		
-		let headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
+		let headerCell = expyDataSource!.tableView(self, expandableCellForSection: indexPath.section)
 		
 		guard let headerCellConformant = headerCell as? ExpyTableViewHeaderCell else {
 			return headerCell
@@ -240,14 +229,42 @@ extension ExpyTableView: UITableViewDelegate {
 extension ExpyTableView {
 	fileprivate func canExpand(_ section: Int) -> Bool {
 		//If canExpandSections delegate method is not implemented, it defaults to true.
-		return expyDataSource?.canExpand?(section: section, inTableView: self) ?? true
+		return expyDataSource?.tableView(self, canExpandSection: section) ?? ExpyTableViewDefaultValues.expandableStatus
 	}
 	
 	fileprivate func didExpand(_ section: Int) -> Bool {
 		return expandedSections[section] ?? false
 	}
 	
-	fileprivate func assign(section section: Int, asExpanded: Bool) {
+	fileprivate func assign(_ section: Int, asExpanded: Bool) {
 		expandedSections[section] = asExpanded
 	}
 }
+
+//MARK: Protocol Helper
+extension ExpyTableView {
+	fileprivate func verifyProtocol(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
+		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
+	}
+	
+	override open func responds(to aSelector: Selector!) -> Bool {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
+			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
+			
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
+		}
+		return super.responds(to: aSelector)
+	}
+	
+	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
+			return expyDataSource
+			
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+			return expyDelegate
+		}
+		return super.forwardingTarget(for: aSelector)
+	}
+}
+

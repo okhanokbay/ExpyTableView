@@ -38,14 +38,14 @@ class PhoneNameTableViewCell: UITableViewCell, ExpyTableViewHeaderCell{
 	}
 	
 	private func arrowDown(animated: Bool) {
-		UIView.animate(withDuration: (animated ? 0.3 : 0)) { [weak self] _ in
-			self?.imageViewArrow.transform = CGAffineTransform(rotationAngle: (CGFloat.pi / 2))
+		UIView.animate(withDuration: (animated ? 0.3 : 0)) {
+			self.imageViewArrow.transform = CGAffineTransform(rotationAngle: (CGFloat.pi / 2))
 		}
 	}
 	
 	private func arrowRight(animated: Bool) {
-		UIView.animate(withDuration: (animated ? 0.3 : 0)) { [weak self] _ in
-			self?.imageViewArrow.transform = CGAffineTransform(rotationAngle: 0)
+		UIView.animate(withDuration: (animated ? 0.3 : 0)) {
+			self.imageViewArrow.transform = CGAffineTransform(rotationAngle: 0)
 		}
 	}
 }
@@ -59,14 +59,14 @@ class BuyTableViewCell: UITableViewCell {}
 extension UITableViewCell {
 
 	func showSeparator() {
-		DispatchQueue.main.async { [weak self] _ in
-			self?.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+		DispatchQueue.main.async {
+			self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		}
 	}
 	
 	func hideSeparator() {
-		DispatchQueue.main.async { [weak self] in
-			self?.separatorInset = UIEdgeInsets(top: 0, left: UIScreen.main.bounds.size.width, bottom: 0, right: 0)
+		DispatchQueue.main.async {
+			self.separatorInset = UIEdgeInsets(top: 0, left: self.bounds.size.width, bottom: 0, right: 0)
 		}
 	}
 }

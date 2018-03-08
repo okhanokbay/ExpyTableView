@@ -28,7 +28,7 @@ class BasicExampleViewController: UIViewController {
 //All you have to do is to implement this method. If you have a current table view which is not expandable, you can turn it into an expandable table view just by copying and pasting the code for first cell from cellForRowAtIndexPath method.
 
 extension BasicExampleViewController: ExpyTableViewDataSource {
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
 		//Make your customizations here.
 		cell.labelHeader.text = "Section: \(section) Row: 0"
