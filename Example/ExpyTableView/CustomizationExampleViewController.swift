@@ -70,7 +70,7 @@ class CustomizationExampleViewController: UIViewController {
 	@objc private func orientationDidChange() {
 		switch UIDevice.current.orientation {
 		case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
-			expandableTableView.reloadSections(IndexSet(Array(expandableTableView.visibleSections.keys)), with: .none)
+			expandableTableView.reloadSections(IndexSet(Array(expandableTableView.expandedSections.keys)), with: .none)
 		default:break
 		}
 	}

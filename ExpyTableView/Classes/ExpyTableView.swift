@@ -53,8 +53,7 @@ open class ExpyTableView: UITableView {
 	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
 	fileprivate weak var expyDelegate: ExpyTableViewDelegate?
 	
-	public fileprivate(set) var expandableSections: [Int: Bool] = [:]
-	public fileprivate(set) var visibleSections: [Int: Bool] = [:]
+	public fileprivate(set) var expandedSections: [Int: Bool] = [:]
 	
 	open var expandingAnimation: UITableViewRowAnimation = .fade
 	open var collapsingAnimation: UITableViewRowAnimation = .fade
@@ -135,14 +134,14 @@ extension ExpyTableView {
 	}
 	
 	private func animate(with type: ExpyActionType, forSection section: Int) {
-		guard let sectionIsExpandable = expandableSections[section], sectionIsExpandable else { return }
+		guard canExpand(section) else { return }
 		
-		let sectionIsVisible = visibleSections[section] ?? false
+		let sectionIsExpanded = didExpand(section)
 		
 		//If section is visible and action type is expand, OR, If section is not visible and action type is collapse, return.
-		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
+		if ((type == .expand) && (sectionIsExpanded)) || ((type == .collapse) && (!sectionIsExpanded)) { return }
 		
-		visibleSections[section] = (type == .expand)
+		assign(section: section, asExpanded: (type == .expand))
 		startAnimating(self, with: type, forSection: section)
 	}
 	
@@ -193,39 +192,28 @@ extension ExpyTableView {
 
 extension ExpyTableView: UITableViewDataSource {
 	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		//If canExpandSections delegate method is not implemented, it defaults to true.
-		let sectionIsExpandable = expyDataSource?.canExpand?(section: section, inTableView: self) ?? true
-		let sectionIsVisible = visibleSections[section] ?? false
 		let numberOfRows = expyDataSource?.tableView(self, numberOfRowsInSection: section) ?? 0
 		
-		guard sectionIsExpandable else {
-			expandableSections[section] = false
-			return numberOfRows
-		}
+		guard canExpand(section) else { return numberOfRows }
+		guard numberOfRows != 0 else { return 0 }
 		
-		guard numberOfRows != 0 else {
-			return 0
-		}
-		
-		expandableSections[section] = true
-		return sectionIsVisible ? numberOfRows : 1
+		return didExpand(section) ? numberOfRows : 1
 	}
 	
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
-		
-		guard sectionIsExpandable, indexPath.row == 0 else {
+		guard canExpand(indexPath.section), indexPath.row == 0 else {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
 		
 		let headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
-
+		
 		guard let headerCellConformant = headerCell as? ExpyTableViewHeaderCell else {
 			return headerCell
 		}
 		
 		DispatchQueue.main.async { [weak self] _ in
-			if self?.visibleSections[indexPath.section] == true {
+			guard let strongSelf = self else { return }
+			if strongSelf.didExpand(indexPath.section) {
 				headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
 				headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
 			}else {
@@ -240,12 +228,26 @@ extension ExpyTableView: UITableViewDataSource {
 extension ExpyTableView: UITableViewDelegate {
 	
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
-		let sectionIsVisible = visibleSections[indexPath.section] ?? false
-		
 		expyDelegate?.tableView?(tableView, didSelectRowAt: indexPath)
 		
-		guard sectionIsExpandable, indexPath.row == 0 else { return }
-		sectionIsVisible ? collapse(indexPath.section) : expand(indexPath.section)
+		guard canExpand(indexPath.section), indexPath.row == 0 else { return }
+		didExpand(indexPath.section) ? collapse(indexPath.section) : expand(indexPath.section)
+	}
+}
+
+//MARK: Helper Methods
+
+extension ExpyTableView {
+	fileprivate func canExpand(_ section: Int) -> Bool {
+		//If canExpandSections delegate method is not implemented, it defaults to true.
+		return expyDataSource?.canExpand?(section: section, inTableView: self) ?? true
+	}
+	
+	fileprivate func didExpand(_ section: Int) -> Bool {
+		return expandedSections[section] ?? false
+	}
+	
+	fileprivate func assign(section section: Int, asExpanded: Bool) {
+		expandedSections[section] = asExpanded
 	}
 }
