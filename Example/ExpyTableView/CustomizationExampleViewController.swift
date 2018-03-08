@@ -70,7 +70,7 @@ class CustomizationExampleViewController: UIViewController {
 	@objc private func orientationDidChange() {
 		switch UIDevice.current.orientation {
 		case .portrait, .portraitUpsideDown, .landscapeLeft, .landscapeRight:
-			expandableTableView.reloadSections(IndexSet(Array(expandableTableView.visibleSections.keys)), with: .none)
+			expandableTableView.reloadSections(IndexSet(Array(expandableTableView.expandedSections.keys)), with: .none)
 		default:break
 		}
 	}
@@ -78,11 +78,12 @@ class CustomizationExampleViewController: UIViewController {
 
 //MARK: ExpyTableViewDataSourceMethods
 extension CustomizationExampleViewController: ExpyTableViewDataSource {
-	func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+	
+	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
 		return true
 	}
-		
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+	
+	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhoneNameTableViewCell.self)) as! PhoneNameTableViewCell
 		cell.labelPhoneName.text = sampleData[section].first!
 		cell.layoutMargins = UIEdgeInsets.zero
@@ -143,6 +144,10 @@ extension CustomizationExampleViewController {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// Please see https://github.com/okhanokbay/ExpyTableView/issues/12
+		// The cell instance that you return from expandableCellForSection: data source method is actually the first row of belonged section. Thus, when you return 4 from numberOfRowsInSection data source method, first row refers to expandable cell and the other 3 rows refer to other rows in this section.
+		// So, always return the total row count you want to see in that section
+		
 		print("Row count for section \(section) is \(sampleData[section].count)")
 		return sampleData[section].count + 1 // +1 here is for BuyTableViewCell
 	}

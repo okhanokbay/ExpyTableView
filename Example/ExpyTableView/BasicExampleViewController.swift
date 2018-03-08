@@ -28,7 +28,7 @@ class BasicExampleViewController: UIViewController {
 //All you have to do is to implement this method. If you have a current table view which is not expandable, you can turn it into an expandable table view just by copying and pasting the code for first cell from cellForRowAtIndexPath method.
 
 extension BasicExampleViewController: ExpyTableViewDataSource {
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HeaderTableViewCell.self)) as! HeaderTableViewCell
 		//Make your customizations here.
 		cell.labelHeader.text = "Section: \(section) Row: 0"
@@ -44,6 +44,10 @@ extension BasicExampleViewController {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// Please see https://github.com/okhanokbay/ExpyTableView/issues/12
+		// The cell instance that you return from expandableCellForSection: data source method is actually the first row of belonged section. Thus, when you return 4 from numberOfRowsInSection data source method, first row refers to expandable cell and the other 3 rows refer to other rows in this section.
+		// So, always return the total row count you want to see in that section
+		
 		return 4
 	}
 	

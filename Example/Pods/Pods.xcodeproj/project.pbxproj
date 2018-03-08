@@ -11,6 +11,7 @@
 		1A06D84084B0C44865900CCB8A5A1534 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		1A44AD33C38CD4F50B59A96FCA97B8BF /* ExpyTableView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A39B7FBF66181DADBB05FD478264F1D /* ExpyTableView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		831A72D21EF31BF800D7F300 /* ExpyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A72D11EF31BF800D7F300 /* ExpyTableView.swift */; };
+		833E68792050EFFB005A9D34 /* ExpyAbstractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E68782050EFFB005A9D34 /* ExpyAbstractions.swift */; };
 		8A89E7FDBB26B7ECBD190A01732BDC4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		901919802B686B193BEAE7DE411092D7 /* Pods-ExpyTableView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE746ACF9291082285D96F0A8C0616E /* Pods-ExpyTableView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBDC314FEF990A53D166D1AD9A4C7B73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -49,6 +50,7 @@
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7A0D10F121F9F8066A72D0F47FCD3660 /* Pods_ExpyTableView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpyTableView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		831A72D11EF31BF800D7F300 /* ExpyTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpyTableView.swift; sourceTree = "<group>"; };
+		833E68782050EFFB005A9D34 /* ExpyAbstractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpyAbstractions.swift; sourceTree = "<group>"; };
 		875E6EC06B446971AB8556A1E2CA0A18 /* Pods-ExpyTableView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ExpyTableView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A1C5A27222EAA3E9F72A3644F3111988 /* Pods-ExpyTableView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ExpyTableView_Tests.modulemap"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				831A72D11EF31BF800D7F300 /* ExpyTableView.swift */,
+				833E68782050EFFB005A9D34 /* ExpyAbstractions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -313,8 +316,11 @@
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
+					920EA1F32B8FA0D45D23221BE3E46717 = {
+						LastSwiftMigration = 0910;
+					};
 					A12191B7D5A7D3B311B38BDA601225DD = {
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0910;
 					};
 				};
 			};
@@ -342,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				833E68792050EFFB005A9D34 /* ExpyAbstractions.swift in Sources */,
 				E101B06D6CA261C7F2E7D6B60F1AC1B8 /* ExpyTableView-dummy.m in Sources */,
 				831A72D21EF31BF800D7F300 /* ExpyTableView.swift in Sources */,
 			);
@@ -404,7 +411,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -491,7 +499,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -529,7 +538,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -564,7 +574,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

@@ -27,37 +27,15 @@
 
 import UIKit
 
-@objc public enum ExpyState: Int {
-	case willExpand, willCollapse, didExpand, didCollapse
-}
-
-public enum ExpyActionType {
-	case expand, collapse
-}
-
-@objc public protocol ExpyTableViewHeaderCell: class {
-	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
-}
-
-@objc public protocol ExpyTableViewDataSource: UITableViewDataSource {
-	@objc optional func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool //default is true, which means all header cells are expandable
-	func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell
-}
-
-@objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
-	@objc optional func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
-}
-
 open class ExpyTableView: UITableView {
 	
 	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
 	fileprivate weak var expyDelegate: ExpyTableViewDelegate?
 	
-	public fileprivate(set) var expandableSections: [Int: Bool] = [:]
-	public fileprivate(set) var visibleSections: [Int: Bool] = [:]
+	public fileprivate(set) var expandedSections: [Int: Bool] = [:]
 	
-	open var expandingAnimation: UITableViewRowAnimation = .fade
-	open var collapsingAnimation: UITableViewRowAnimation = .fade
+	open var expandingAnimation: UITableViewRowAnimation = ExpyTableViewDefaultValues.expandingAnimation
+	open var collapsingAnimation: UITableViewRowAnimation = ExpyTableViewDefaultValues.collapsingAnimation
 	
 	public override init(frame: CGRect, style: UITableViewStyle) {
 		super.init(frame: frame, style: style)
@@ -68,9 +46,9 @@ open class ExpyTableView: UITableView {
 	}
 	
 	open override var dataSource: UITableViewDataSource? {
-		get {
-			return super.dataSource
-		}
+		
+		get { return super.dataSource }
+		
 		set(dataSource) {
 			guard let dataSource = dataSource else { return }
 			expyDataSource = dataSource as? ExpyTableViewDataSource
@@ -79,9 +57,9 @@ open class ExpyTableView: UITableView {
 	}
 	
 	open override var delegate: UITableViewDelegate? {
-		get {
-			return super.delegate
-		}
+		
+		get { return super.delegate }
+		
 		set(delegate) {
 			guard let delegate = delegate else { return }
 			expyDelegate = delegate as? ExpyTableViewDelegate
@@ -98,33 +76,6 @@ open class ExpyTableView: UITableView {
 	}
 }
 
-//MARK: Protocol Helper
-extension ExpyTableView {
-	fileprivate func verifyProtocol(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
-		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
-	}
-	
-	override open func responds(to aSelector: Selector!) -> Bool {
-		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
-			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
-			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
-			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
-		}
-		return super.responds(to: aSelector)
-	}
-	
-	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
-		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
-			return expyDataSource
-			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
-			return expyDelegate
-		}
-		return super.forwardingTarget(for: aSelector)
-	}
-}
-
 extension ExpyTableView {
 	public func expand(_ section: Int) {
 		animate(with: .expand, forSection: section)
@@ -135,14 +86,14 @@ extension ExpyTableView {
 	}
 	
 	private func animate(with type: ExpyActionType, forSection section: Int) {
-		guard let sectionIsExpandable = expandableSections[section], sectionIsExpandable else { return }
+		guard canExpand(section) else { return }
 		
-		let sectionIsVisible = visibleSections[section] ?? false
+		let sectionIsExpanded = didExpand(section)
 		
 		//If section is visible and action type is expand, OR, If section is not visible and action type is collapse, return.
-		if ((type == .expand) && (sectionIsVisible)) || ((type == .collapse) && (!sectionIsVisible)) { return }
+		if ((type == .expand) && (sectionIsExpanded)) || ((type == .collapse) && (!sectionIsExpanded)) { return }
 		
-		visibleSections[section] = (type == .expand)
+		assign(section, asExpanded: (type == .expand))
 		startAnimating(self, with: type, forSection: section)
 	}
 	
@@ -156,13 +107,13 @@ extension ExpyTableView {
 		
 		//Inform the delegates here.
 		headerCellConformant?.changeState((type == .expand ? .willExpand : .willCollapse), cellReuseStatus: false)
-		expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
+		expyDelegate?.tableView(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
 
-		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
+		CATransaction.setCompletionBlock {
 			//Inform the delegates here.
 			headerCellConformant?.changeState((type == .expand ? .didExpand : .didCollapse), cellReuseStatus: false)
 			
-			self?.expyDelegate?.tableView?(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
+			self.expyDelegate?.tableView(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
 			headerCell?.isUserInteractionEnabled = true
 		}
 		
@@ -193,39 +144,27 @@ extension ExpyTableView {
 
 extension ExpyTableView: UITableViewDataSource {
 	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		//If canExpandSections delegate method is not implemented, it defaults to true.
-		let sectionIsExpandable = expyDataSource?.canExpand?(section: section, inTableView: self) ?? true
-		let sectionIsVisible = visibleSections[section] ?? false
 		let numberOfRows = expyDataSource?.tableView(self, numberOfRowsInSection: section) ?? 0
 		
-		guard sectionIsExpandable else {
-			expandableSections[section] = false
-			return numberOfRows
-		}
+		guard canExpand(section) else { return numberOfRows }
+		guard numberOfRows != 0 else { return 0 }
 		
-		guard numberOfRows != 0 else {
-			return 0
-		}
-		
-		expandableSections[section] = true
-		return sectionIsVisible ? numberOfRows : 1
+		return didExpand(section) ? numberOfRows : 1
 	}
 	
 	open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
-		
-		guard sectionIsExpandable, indexPath.row == 0 else {
+		guard canExpand(indexPath.section), indexPath.row == 0 else {
 			return expyDataSource!.tableView(tableView, cellForRowAt: indexPath)
 		}
 		
-		let headerCell = expyDataSource!.expandableCell(forSection: indexPath.section, inTableView: self)
-
+		let headerCell = expyDataSource!.tableView(self, expandableCellForSection: indexPath.section)
+		
 		guard let headerCellConformant = headerCell as? ExpyTableViewHeaderCell else {
 			return headerCell
 		}
 		
-		DispatchQueue.main.async { [weak self] _ in
-			if self?.visibleSections[indexPath.section] == true {
+		DispatchQueue.main.async {
+			if self.didExpand(indexPath.section) {
 				headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
 				headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
 			}else {
@@ -240,12 +179,54 @@ extension ExpyTableView: UITableViewDataSource {
 extension ExpyTableView: UITableViewDelegate {
 	
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let sectionIsExpandable = expandableSections[indexPath.section] ?? false
-		let sectionIsVisible = visibleSections[indexPath.section] ?? false
-		
 		expyDelegate?.tableView?(tableView, didSelectRowAt: indexPath)
 		
-		guard sectionIsExpandable, indexPath.row == 0 else { return }
-		sectionIsVisible ? collapse(indexPath.section) : expand(indexPath.section)
+		guard canExpand(indexPath.section), indexPath.row == 0 else { return }
+		didExpand(indexPath.section) ? collapse(indexPath.section) : expand(indexPath.section)
 	}
 }
+
+//MARK: Helper Methods
+
+extension ExpyTableView {
+	fileprivate func canExpand(_ section: Int) -> Bool {
+		//If canExpandSections delegate method is not implemented, it defaults to true.
+		return expyDataSource?.tableView(self, canExpandSection: section) ?? ExpyTableViewDefaultValues.expandableStatus
+	}
+	
+	fileprivate func didExpand(_ section: Int) -> Bool {
+		return expandedSections[section] ?? false
+	}
+	
+	fileprivate func assign(_ section: Int, asExpanded: Bool) {
+		expandedSections[section] = asExpanded
+	}
+}
+
+//MARK: Protocol Helper
+extension ExpyTableView {
+	fileprivate func verifyProtocol(_ aProtocol: Protocol, contains aSelector: Selector) -> Bool {
+		return protocol_getMethodDescription(aProtocol, aSelector, true, true).name != nil || protocol_getMethodDescription(aProtocol, aSelector, false, true).name != nil
+	}
+	
+	override open func responds(to aSelector: Selector!) -> Bool {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
+			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
+			
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
+		}
+		return super.responds(to: aSelector)
+	}
+	
+	override open func forwardingTarget(for aSelector: Selector!) -> Any? {
+		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
+			return expyDataSource
+			
+		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+			return expyDelegate
+		}
+		return super.forwardingTarget(for: aSelector)
+	}
+}
+
