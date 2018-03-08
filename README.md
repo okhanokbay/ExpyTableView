@@ -17,6 +17,11 @@ When using ExpyTableView, sections are being expanded and collapsed. You impleme
 
 ## Requirements
 
+VERSION 1.0:
+- iOS 8.0+
+- Swift 4.0+
+
+VERSION 0.3.1:
 - iOS 8.0+
 - Swift 3.0+
 
@@ -28,7 +33,7 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ExpyTableView'
 ```
-Or you can manually drag and drop the ExpyTableView.swift to your project, then use it.
+Or you can manually drag and drop the ExpyTableView.swift AND ExpyAbstractions.swift into your project, then use it.
 
 ## How to use
 
@@ -54,7 +59,7 @@ class ViewController: ExpyTableViewDataSource {
   }
 
   // Then return your expandable cell instance from this data source method.
-  func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+  func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
     // This cell will be displayed at IndexPath with (section: section and row: 0)
   }
 } 
@@ -67,7 +72,7 @@ class ViewController: ExpyTableViewDataSource {
 ```swift
 extension ViewController {
   //OPTIONAL DATA SOURCE METHOD, default is true for all sections.
-  func canExpand(section: Int, inTableView tableView: ExpyTableView) -> Bool {
+  func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
     return true //Return false if you want your section not to be expandable
   }
 }
