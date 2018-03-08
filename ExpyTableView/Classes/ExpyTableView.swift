@@ -27,43 +27,6 @@
 
 import UIKit
 
-public struct ExpyTableViewDefaultValues {
-	public static let expandableStatus = true
-	public static let expandingAnimation: UITableViewRowAnimation = .fade
-	public static let collapsingAnimation: UITableViewRowAnimation = .fade
-}
-
-public enum ExpyState: Int {
-	case willExpand, willCollapse, didExpand, didCollapse
-}
-
-public enum ExpyActionType {
-	case expand, collapse
-}
-
-public protocol ExpyTableViewHeaderCell: class {
-	func changeState(_ state: ExpyState, cellReuseStatus cellReuse: Bool)
-}
-
-public protocol ExpyTableViewDataSource: UITableViewDataSource {
-	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool
-	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell
-}
-
-public extension ExpyTableViewDataSource {
-	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
-		return ExpyTableViewDefaultValues.expandableStatus
-	}
-}
-
-public protocol ExpyTableViewDelegate: UITableViewDelegate {
-	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
-}
-
-public extension ExpyTableViewDelegate {
-	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {}
-}
-
 open class ExpyTableView: UITableView {
 	
 	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
@@ -146,11 +109,11 @@ extension ExpyTableView {
 		headerCellConformant?.changeState((type == .expand ? .willExpand : .willCollapse), cellReuseStatus: false)
 		expyDelegate?.tableView(tableView, expyState: (type == .expand ? .willExpand : .willCollapse), changeForSection: section)
 
-		CATransaction.setCompletionBlock { [weak self] () -> (Void) in
+		CATransaction.setCompletionBlock {
 			//Inform the delegates here.
 			headerCellConformant?.changeState((type == .expand ? .didExpand : .didCollapse), cellReuseStatus: false)
 			
-			self?.expyDelegate?.tableView(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
+			self.expyDelegate?.tableView(tableView, expyState: (type == .expand ? .didExpand : .didCollapse), changeForSection: section)
 			headerCell?.isUserInteractionEnabled = true
 		}
 		
@@ -200,9 +163,8 @@ extension ExpyTableView: UITableViewDataSource {
 			return headerCell
 		}
 		
-		DispatchQueue.main.async { [weak self] _ in
-			guard let strongSelf = self else { return }
-			if strongSelf.didExpand(indexPath.section) {
+		DispatchQueue.main.async {
+			if self.didExpand(indexPath.section) {
 				headerCellConformant.changeState(.willExpand, cellReuseStatus: true)
 				headerCellConformant.changeState(.didExpand, cellReuseStatus: true)
 			}else {
