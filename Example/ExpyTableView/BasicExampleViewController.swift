@@ -36,7 +36,9 @@ extension BasicExampleViewController: ExpyTableViewDataSource {
 	}
 }
 
-//MARK: Basic Table View Implementation, no need to write UITableViewDataSource because ExpyTableViewDataSource is forwarding all the delegate methods of UITableView that are not handled by itself.
+//MARK: Basic Table View Implementation
+	//No need to conform to UITableViewDataSource besides ExpyTableViewDataSource
+	//Because ExpyTableViewDataSource is forwarding all the Data Source delegate methods of UITableView that are not handled by ExpyTableView.
 
 extension BasicExampleViewController {
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,7 +47,7 @@ extension BasicExampleViewController {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		// Please see https://github.com/okhanokbay/ExpyTableView/issues/12
-		// The cell instance that you return from expandableCellForSection: data source method is actually the first row of belonged section. Thus, when you return 4 from numberOfRowsInSection data source method, first row refers to expandable cell and the other 3 rows refer to other rows in this section.
+		// The cell instance that you return from expandableCellForSection: data source method is actually the first row of belonged section. Hence, when you return 4 from numberOfRowsInSection data source method, first row refers to expandable cell and the other 3 rows refer to other rows in this section.
 		// So, always return the total row count you want to see in that section
 		
 		return 4
@@ -56,7 +58,7 @@ extension BasicExampleViewController {
 			
 		// If you define a cell as expandable and return it from expandingCell data source method,
 		// then you will not get callback for IndexPath(row: 0, section: indexPath.section) here in cellForRowAtIndexPath
-		//But if you define the same cell as -sometimes not expandable- you will get callbacks for not expandable cells here and you must return a cell for IndexPath(row: 0, section: indexPath.section) in here besides in expandingCell. You can return the same cell from expandingCell method and here.
+		//But if you define the same cell as "non-expandable time to time", then you will get callbacks for non-expandable cells in this method and you must return a cell for IndexPath(row: 0, section: indexPath.section) in here besides in expandingCell. You can return the same cell from expandingCell method and here.
 			
 		case 1:
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FirstTableViewCell.self)) as! FirstTableViewCell

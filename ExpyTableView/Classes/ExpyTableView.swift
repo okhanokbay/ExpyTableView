@@ -213,7 +213,7 @@ extension ExpyTableView {
 		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
 			return (super.responds(to: aSelector)) || (expyDataSource?.responds(to: aSelector) ?? false)
 			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+		} else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
 			return (super.responds(to: aSelector)) || (expyDelegate?.responds(to: aSelector) ?? false)
 		}
 		return super.responds(to: aSelector)
@@ -223,7 +223,7 @@ extension ExpyTableView {
 		if verifyProtocol(UITableViewDataSource.self, contains: aSelector) {
 			return expyDataSource
 			
-		}else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
+		} else if verifyProtocol(UITableViewDelegate.self, contains: aSelector) {
 			return expyDelegate
 		}
 		return super.forwardingTarget(for: aSelector)
