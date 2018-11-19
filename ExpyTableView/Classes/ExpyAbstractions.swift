@@ -9,8 +9,8 @@ import Foundation
 
 public struct ExpyTableViewDefaultValues {
 	public static let expandableStatus = true
-	public static let expandingAnimation: UITableViewRowAnimation = .fade
-	public static let collapsingAnimation: UITableViewRowAnimation = .fade
+      public static let expandingAnimation: UITableView.RowAnimation = .fade
+      public static let collapsingAnimation: UITableView.RowAnimation = .fade
 }
 
 public enum ExpyState: Int {
