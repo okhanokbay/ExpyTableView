@@ -34,10 +34,10 @@ open class ExpyTableView: UITableView {
 	
 	public fileprivate(set) var expandedSections: [Int: Bool] = [:]
 	
-    open var expandingAnimation: UITableView.RowAnimation = ExpyTableViewDefaultValues.expandingAnimation
-    open var collapsingAnimation: UITableView.RowAnimation = ExpyTableViewDefaultValues.collapsingAnimation
+      open var expandingAnimation: UITableView.RowAnimation = ExpyTableViewDefaultValues.expandingAnimation
+      open var collapsingAnimation: UITableView.RowAnimation = ExpyTableViewDefaultValues.collapsingAnimation
 	
-    public override init(frame: CGRect, style: UITableView.Style) {
+      public override init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
 	}
 	
