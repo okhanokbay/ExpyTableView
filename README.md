@@ -19,7 +19,7 @@ When using ExpyTableView, sections are being expanded and collapsed. You impleme
 
 ## Requirements
 
-VERSION 1.1:
+VERSION 1.2:
 - iOS 10.0+
 - Swift 5.0+
 
