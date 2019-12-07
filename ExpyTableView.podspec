@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ExpyTableView'
-  s.version          = '1.1'
+  s.version          = '1.2'
   s.swift_version    = '5.0'
   s.summary          = 'ExpyTableView lets you make your table view expandable with implementing one method.'
   s.description      = <<-DESC
@@ -21,7 +21,7 @@ ExpyTableView allows you to make your table view sections expandable just by imp
   s.author           = { 'okhanokbay' => 'okhanokbay5@gmail.com' }
   s.source           = { :git => 'https://github.com/okhanokbay/ExpyTableView.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'ExpyTableView/Classes/**/*'
   s.frameworks = 'UIKit'

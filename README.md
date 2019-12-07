@@ -1,8 +1,8 @@
 # ExpyTableView
 
 [![Version](https://img.shields.io/cocoapods/v/ExpyTableView.svg?style=flat)](http://cocoapods.org/pods/ExpyTableView)
-[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
-![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+![iOS 10.0+](https://img.shields.io/badge/iOS-10.0%2B-blue.svg)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/okhanokbay/ExpyTableView/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/ExpyTableView.svg?style=flat)](http://cocoapods.org/pods/ExpyTableView)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/okhanokbay/ExpyTableView/issues)
@@ -18,6 +18,10 @@ With **ExpyTableView**, you make an expandable table view by using multiple cell
 When using ExpyTableView, sections are being expanded and collapsed. You implement your table view as always you do, and add an extra method. Then your section becomes expandable.
 
 ## Requirements
+
+VERSION 1.1:
+- iOS 10.0+
+- Swift 5.0+
 
 VERSION 1.0:
 - iOS 8.0+
