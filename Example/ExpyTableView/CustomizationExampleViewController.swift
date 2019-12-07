@@ -52,7 +52,7 @@ class CustomizationExampleViewController: UIViewController {
 				expandableTableView.dataSource = self
 				expandableTableView.delegate = self
 			
-				expandableTableView.rowHeight = UITableViewAutomaticDimension
+				expandableTableView.rowHeight = UITableView.automaticDimension
 				expandableTableView.estimatedRowHeight = 44
 			
 				//Alter the animations as you want
@@ -64,7 +64,7 @@ class CustomizationExampleViewController: UIViewController {
 				navigationItem.title = "iPhones"
 			
 				//If your app only works in portrait mode, you don't have to add this. https://github.com/okhanokbay/ExpyTableView/issues/3
-				NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+				NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange), name: UIDevice.orientationDidChangeNotification, object: nil)
 	}
 	
 	@objc private func orientationDidChange() {
@@ -133,7 +133,7 @@ extension CustomizationExampleViewController {
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
+		return UITableView.automaticDimension
 	}
 }
 
