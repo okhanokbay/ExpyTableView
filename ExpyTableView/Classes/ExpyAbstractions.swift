@@ -5,7 +5,7 @@
 //  Created by Okhan on 08/03/2018.
 //
 
-import Foundation
+import UIKit
 
 public struct ExpyTableViewDefaultValues {
 	public static let expandableStatus = true
