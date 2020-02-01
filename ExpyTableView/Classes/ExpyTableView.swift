@@ -27,7 +27,7 @@
 
 import UIKit
 
-open class ExpyTableView: UITableView {
+@objcMembers open class ExpyTableView: UITableView {
 	
 	fileprivate weak var expyDataSource: ExpyTableViewDataSource?
 	fileprivate weak var expyDelegate: ExpyTableViewDelegate?
