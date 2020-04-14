@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ExpyTableView'
-  s.version          = '1.2'
+  s.version          = '1.2.1'
   s.swift_version    = '5.0'
   s.summary          = 'ExpyTableView lets you make your table view expandable with implementing one method.'
   s.description      = <<-DESC
