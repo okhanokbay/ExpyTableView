@@ -30,16 +30,6 @@ public enum ExpyActionType {
 	func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell
 }
 
-public extension ExpyTableViewDataSource {
-	func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
-		return ExpyTableViewDefaultValues.expandableStatus
-	}
-}
-
 @objc public protocol ExpyTableViewDelegate: UITableViewDelegate {
 	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int)
-}
-
-public extension ExpyTableViewDelegate {
-	func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {}
 }

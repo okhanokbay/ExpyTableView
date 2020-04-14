@@ -34,6 +34,10 @@ extension BasicExampleViewController: ExpyTableViewDataSource {
 		cell.labelHeader.text = "Section: \(section) Row: 0"
 		return cell
 	}
+    
+    func tableView(_ tableView: ExpyTableView, canExpandSection section: Int) -> Bool {
+        return ExpyTableViewDefaultValues.expandableStatus
+    }
 }
 
 //MARK: Basic Table View Implementation, no need to write UITableViewDataSource because ExpyTableViewDataSource is forwarding all the delegate methods of UITableView that are not handled by itself.
@@ -89,6 +93,10 @@ extension BasicExampleViewController: ExpyTableViewDelegate {
 		
 		print("DID SELECT row: \(indexPath.row), section: \(indexPath.section)")
 	}
+    
+    func tableView(_ tableView: ExpyTableView, expyState state: ExpyState, changeForSection section: Int) {
+        print("Current state: \(state)")
+    }
 }
 
 class FirstTableViewCell: UITableViewCell {
