@@ -15,7 +15,7 @@ ExpyTableView is a re-write based on [SLExpandableTableView](https://github.com/
 
 With **ExpyTableView**, you make an expandable table view by using multiple cells and inserting/deleting them(which can mean expanding and collapsing). With this approach, you will have a great chance in future design requests. All you will have to do is adding a new UITableViewCell and writing the code for it. You will easily have the new design.
 
-When using ExpyTableView, sections are being expanded and collapsed. You implement your table view as always you do, and add an extra method. Then your section becomes expandable.
+When using ExpyTableView, sections are being expanded and collapsed. You implement your table view as you always do, and add an extra method. Then your section becomes expandable.
 
 ## Requirements
 
